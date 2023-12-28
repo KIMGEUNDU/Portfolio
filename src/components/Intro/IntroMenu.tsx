@@ -17,7 +17,7 @@ function IntroMenu() {
   }, []);
 
   return (
-    <Wrapper>
+    <Wrapper id="IntroMenu">
       <MenuBarItem link="#" img={aboutMe}>
         About Me
       </MenuBarItem>
