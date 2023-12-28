@@ -13,7 +13,7 @@ function Intro() {
   }, []);
 
   return (
-    <Wrapper id="intro" $progressBarEnd={endState}>
+    <Wrapper $progressBarEnd={endState}>
       <Container>
         <ProgressBar />
         <PortFolioTitle />
