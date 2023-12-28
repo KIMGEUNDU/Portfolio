@@ -76,6 +76,12 @@ const InfinityTextWrapper = styled.div`
   padding: 130px 0;
   font-size: 200px;
   font-weight: 900;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 50px;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 100px;
+  }
 `;
 
 const InfinityTextTrack = styled.p<{ $state: boolean }>`
