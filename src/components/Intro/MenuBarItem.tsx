@@ -2,20 +2,20 @@ import { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 function MenuBarItem({
-  link,
   img,
   delayTime = 1,
+  onClick,
   children,
 }: {
-  link: string;
   img: string;
   delayTime?: number;
+  onClick: () => void;
   children: string;
 }) {
   const [endAnimation, setEndAnimation] = useState(false);
 
   return (
-    <ItemLink id="navLink" href={link}>
+    <ItemLink id="navLink" onClick={onClick}>
       <Image
         src={img}
         alt="Designed by Freepik"
@@ -33,7 +33,9 @@ const appearImage = keyframes`
     100%{opacity: 1; transform: scale(1)}
 `;
 
-const ItemLink = styled.a`
+const ItemLink = styled.button`
+  background-color: transparent;
+  border: none;
   position: relative;
   text-align: center;
 `;
