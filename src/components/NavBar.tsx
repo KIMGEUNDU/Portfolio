@@ -28,6 +28,10 @@ function NavBar() {
               case 'Promise':
                 setBg('pink');
                 break;
+
+              case 'AboutMe':
+                setBg('yellow');
+                break;
             }
           }
         });
@@ -37,10 +41,12 @@ function NavBar() {
 
     const IntroPage = document.getElementById('IntroMenu');
     const PromisePage = document.getElementById('Promise');
+    const AboutMePage = document.getElementById('AboutMe');
 
-    if (IntroPage && PromisePage) {
+    if (IntroPage && PromisePage && AboutMePage) {
       observer.observe(IntroPage);
       observer.observe(PromisePage);
+      observer.observe(AboutMePage);
     }
   }, []);
 
@@ -68,39 +74,39 @@ function NavBar() {
       </NavItem>
       <NavItem
         id="navItem"
-        $current={currentNavItem === 'aboutme'}
+        $current={currentNavItem === 'AboutMe'}
         $bg={bg}
-        onClick={() => handleNavItemClick('aboutme')}
+        onClick={() => handleNavItemClick('AboutMe')}
       >
-        <NavItemTitle $current={currentNavItem === 'aboutme'}>
+        <NavItemTitle $current={currentNavItem === 'AboutMe'}>
           About Me
         </NavItemTitle>
       </NavItem>
       <NavItem
         id="navItem"
-        $current={currentNavItem === 'ithink'}
+        $current={currentNavItem === 'IThink'}
         $bg={bg}
-        onClick={() => handleNavItemClick('ithink')}
+        onClick={() => handleNavItemClick('IThink')}
       >
-        <NavItemTitle $current={currentNavItem === 'ithink'}>
+        <NavItemTitle $current={currentNavItem === 'IThink'}>
           I Think
         </NavItemTitle>
       </NavItem>
       <NavItem
         id="navItem"
-        $current={currentNavItem === 'skill'}
+        $current={currentNavItem === 'Skill'}
         $bg={bg}
-        onClick={() => handleNavItemClick('skill')}
+        onClick={() => handleNavItemClick('Skill')}
       >
-        <NavItemTitle $current={currentNavItem === 'skill'}>Skill</NavItemTitle>
+        <NavItemTitle $current={currentNavItem === 'Skill'}>Skill</NavItemTitle>
       </NavItem>
       <NavItem
         id="navItem"
-        $current={currentNavItem === 'project'}
+        $current={currentNavItem === 'Project'}
         $bg={bg}
-        onClick={() => handleNavItemClick('project')}
+        onClick={() => handleNavItemClick('Project')}
       >
-        <NavItemTitle $current={currentNavItem === 'project'}>
+        <NavItemTitle $current={currentNavItem === 'Project'}>
           Project
         </NavItemTitle>
       </NavItem>
