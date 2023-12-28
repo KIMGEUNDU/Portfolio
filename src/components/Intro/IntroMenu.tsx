@@ -10,6 +10,11 @@ import MenuBarItem from './MenuBarItem';
 function IntroMenu() {
   const { setView } = useContactView();
 
+  function movePage(id: string) {
+    const element = document.getElementById(id);
+    element?.scrollIntoView({ behavior: 'smooth' });
+  }
+
   useEffect(() => {
     setTimeout(() => {
       setView(true);
@@ -18,16 +23,24 @@ function IntroMenu() {
 
   return (
     <Wrapper id="IntroMenu">
-      <MenuBarItem link="#" img={aboutMe}>
+      <MenuBarItem img={aboutMe} onClick={() => movePage('AboutMe')}>
         About Me
       </MenuBarItem>
-      <MenuBarItem link="#" img={ithink} delayTime={1.5}>
+      <MenuBarItem
+        img={ithink}
+        delayTime={1.5}
+        onClick={() => movePage('IThink')}
+      >
         I Think
       </MenuBarItem>
-      <MenuBarItem link="#" img={skill} delayTime={2}>
+      <MenuBarItem img={skill} delayTime={2} onClick={() => movePage('Skill')}>
         Skill
       </MenuBarItem>
-      <MenuBarItem link="#" img={project} delayTime={2.5}>
+      <MenuBarItem
+        img={project}
+        delayTime={2.5}
+        onClick={() => movePage('Project')}
+      >
         Project
       </MenuBarItem>
     </Wrapper>
