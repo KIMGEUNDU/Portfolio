@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import PortFolioTitle from './PortFolioTitle';
-import ProgressBar from './ProgressBar';
+import PortfolioTitle from 'components/Intro/PortfolioTitle';
+import ProgressBar from '../components/Intro/ProgressBar';
 
 function Intro() {
   const [endState, setEndState] = useState(false);
@@ -16,7 +16,7 @@ function Intro() {
     <Wrapper $progressBarEnd={endState}>
       <Container>
         <ProgressBar />
-        <PortFolioTitle />
+        <PortfolioTitle />
       </Container>
     </Wrapper>
   );

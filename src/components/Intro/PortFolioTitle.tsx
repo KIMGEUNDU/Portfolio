@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-function PortFolioTitle() {
+function PortfolioTitle() {
   const title = 'GEONJU&PORTFOLIO';
 
   return (
@@ -42,4 +42,4 @@ const LetterItem = styled.span`
   animation: ${appearLetter} 2s forwards;
 `;
 
-export default PortFolioTitle;
+export default PortfolioTitle;

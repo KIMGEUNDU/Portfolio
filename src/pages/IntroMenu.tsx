@@ -5,7 +5,7 @@ import project from 'assets/project.png';
 import skill from 'assets/skill.png';
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import MenuBarItem from './MenuBarItem';
+import MenuBarItem from '../components/Intro/MenuBarItem';
 
 function IntroMenu() {
   const { setView } = useContactView();

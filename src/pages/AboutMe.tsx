@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Title from './Title';
+import Title from '../components/Main/Title';
 import profile from 'assets/aiProfile.png';
 
 function AboutMe() {

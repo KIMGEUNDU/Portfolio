@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FaPlay } from 'react-icons/fa6';
 import { IoMdPause } from 'react-icons/io';
 import styled, { keyframes } from 'styled-components';
-import ControlButton from './ControlButton';
+import ControlButton from '../components/Main/ControlButton';
 
 function Promise() {
   const [animationState, setAnimationState] = useState(false);

@@ -1,4 +1,4 @@
-import Intro from '@/components/Intro/Intro';
+import Intro from '@/pages/Intro';
 import Main from '@/layout/Main';
 
 // axios.defaults.baseURL = 'https://localhost/api';
