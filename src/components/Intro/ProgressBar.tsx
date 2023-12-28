@@ -6,7 +6,7 @@ function ProgressBar() {
       <ProgressBarItem
         id="firstProgressBarItem"
         $animation={percentNumber}
-        $second={2.5}
+        $second={2}
         $repeat={1}
       >
         <span>0</span>
@@ -15,7 +15,7 @@ function ProgressBar() {
       <ProgressBarItem
         id="secondProgressBarItem"
         $animation={randomNumber}
-        $second={1.5}
+        $second={1}
         $repeat={2}
       >
         <span>0</span>
@@ -32,7 +32,7 @@ function ProgressBar() {
       <ProgressBarItem
         id="thirdProgressBarItem"
         $animation={randomNumber}
-        $second={1}
+        $second={0.5}
         $repeat={3}
       >
         <span>0</span>
@@ -52,6 +52,11 @@ function ProgressBar() {
 }
 
 // 애니메이션
+const disappearProgressBar = keyframes`
+    0% { opacity: 1 }
+  100% { opacity: 0 }
+`;
+
 const percentNumber = keyframes`
   0% { transform: translateY(0); }
   100% { transform: translateY(-100%); }
@@ -64,11 +69,17 @@ const randomNumber = keyframes`
 `;
 
 const ProgressBarWrapper = styled.div`
+  font-size: 30px;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translateX(50%) translateY(-50%);
   width: 150px;
   height: 30px;
   display: flex;
   justify-content: center;
   overflow: hidden;
+  animation: ${disappearProgressBar} 2s ease-in-out 2s forwards;
 `;
 
 const ProgressBarItem = styled.p<{

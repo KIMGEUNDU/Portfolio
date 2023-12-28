@@ -27,6 +27,7 @@
       "pages/*": ["src/pages/*"],
       "assets/*": ["src/assets/*"],
       "store/*": ["src/store/*"],
+      "context/*": ["src/context/*"],
       "layout/*": ["src/layout/*"],
       "style/*": ["src/style/*"],
       "utils/*": ["src/utils/*"]
