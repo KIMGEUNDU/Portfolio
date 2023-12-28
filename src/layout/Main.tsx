@@ -10,25 +10,25 @@ function Main() {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   // window 스크롤 이벤트
-
   function handleScroll(e: WheelEvent) {
     e.preventDefault();
 
-    if (window.scrollY === 0) {
-      return;
-    }
-
     const delta = e.deltaY;
+    // const documentHeight = document.body.clientHeight;
     const windowHeight = window.innerHeight;
 
     if (delta > 0) {
       setScrollPosition(scrollPosition + windowHeight);
     } else {
-      setScrollPosition(windowHeight - scrollPosition);
+      if (window.scrollY === 0) {
+        return;
+      } else {
+        setScrollPosition(scrollPosition - windowHeight);
+      }
     }
 
     window.scrollTo({
-      top: scrollPosition + windowHeight,
+      top: scrollPosition,
       behavior: 'smooth',
     });
   }
@@ -42,7 +42,7 @@ function Main() {
   }, []);
 
   return (
-    <Wrapper isProgressBarEnd={endState}>
+    <Wrapper $progressBarEnd={endState}>
       <IntroMenu />
       <Promise />
       <NavBar />
@@ -51,9 +51,9 @@ function Main() {
   );
 }
 
-const Wrapper = styled.main<{ isProgressBarEnd: boolean }>`
+const Wrapper = styled.main<{ $progressBarEnd: boolean }>`
   transition: display 2s ease-in-out;
-  display: ${(props) => (props.isProgressBarEnd ? 'block' : 'none')};
+  display: ${(props) => (props.$progressBarEnd ? 'block' : 'none')};
 `;
 
 export default Main;
