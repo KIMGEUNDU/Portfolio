@@ -9,7 +9,7 @@ function Promise() {
   const infinityText = 'Constant Challenge　';
 
   return (
-    <Wrapper>
+    <Wrapper id="Promise">
       <MoveLogin>KIMGEONJU</MoveLogin>
       <ControlButtonWrapper>
         <ControlButton
@@ -23,7 +23,7 @@ function Promise() {
           onClick={() => setAnimationState(false)}
         />
       </ControlButtonWrapper>
-      <InfinityTextWrapper id="Promise">
+      <InfinityTextWrapper>
         <InfinityTextTrack $state={animationState}>
           {infinityText.repeat(10)}
         </InfinityTextTrack>
