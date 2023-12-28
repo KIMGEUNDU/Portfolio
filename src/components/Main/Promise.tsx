@@ -1,40 +1,34 @@
-import { Helmet } from 'react-helmet-async';
+import { useState } from 'react';
 import { FaPlay } from 'react-icons/fa6';
 import { IoMdPause } from 'react-icons/io';
 import styled, { keyframes } from 'styled-components';
 import ControlButton from './ControlButton';
-import { useState } from 'react';
 
 function Promise() {
   const [animationState, setAnimationState] = useState(false);
   const infinityText = 'Constant Challenge　';
 
   return (
-    <>
-      <Helmet>
-        <title>Promise</title>
-      </Helmet>
-      <Wrapper>
-        <MoveLogin>KIMGEONJU</MoveLogin>
-        <ControlButtonWrapper>
-          <ControlButton
-            img={IoMdPause}
-            label="일시정지"
-            onClick={() => setAnimationState(true)}
-          />
-          <ControlButton
-            img={FaPlay}
-            label="재생"
-            onClick={() => setAnimationState(false)}
-          />
-        </ControlButtonWrapper>
-        <InfinityTextWrapper>
-          <InfinityTextTrack $state={animationState}>
-            {infinityText.repeat(10)}
-          </InfinityTextTrack>
-        </InfinityTextWrapper>
-      </Wrapper>
-    </>
+    <Wrapper id="promise">
+      <MoveLogin>KIMGEONJU</MoveLogin>
+      <ControlButtonWrapper>
+        <ControlButton
+          img={IoMdPause}
+          label="일시정지"
+          onClick={() => setAnimationState(true)}
+        />
+        <ControlButton
+          img={FaPlay}
+          label="재생"
+          onClick={() => setAnimationState(false)}
+        />
+      </ControlButtonWrapper>
+      <InfinityTextWrapper>
+        <InfinityTextTrack $state={animationState}>
+          {infinityText.repeat(10)}
+        </InfinityTextTrack>
+      </InfinityTextWrapper>
+    </Wrapper>
   );
 }
 
