@@ -5,6 +5,7 @@ import Promise from '@/pages/Promise';
 import NavBar from '@/components/NavBar';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import IThink from '@/pages/IThink';
 
 function Main() {
   const [endState, setEndState] = useState(false);
@@ -15,7 +16,6 @@ function Main() {
     e.preventDefault();
 
     const delta = e.deltaY;
-    // const documentHeight = document.body.clientHeight;
     const windowHeight = window.innerHeight;
 
     if (delta > 0) {
@@ -47,6 +47,7 @@ function Main() {
       <IntroMenu />
       <Promise />
       <AboutMe />
+      <IThink />
       <NavBar />
       <ContactButton />
     </Wrapper>
