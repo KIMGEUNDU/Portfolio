@@ -5,12 +5,17 @@ import styled, { keyframes } from 'styled-components';
 function ContactButton() {
   const { view } = useContactView();
 
+  const moveContactPage = () => {
+    const element = document.getElementById('Contact');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <Button
       type="button"
       id="contactButton"
       aria-label="연락하기"
-      onClick={() => console.log('안녕')}
+      onClick={moveContactPage}
       $appear={view}
     >
       <ButtonImg as={TbSend} alt="contact 이미지" aria-hidden />
