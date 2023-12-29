@@ -53,7 +53,7 @@ const MoveLogin = styled.button`
   left: 50%;
   transform: translateX(-50%);
   margin: 0 auto;
-  font-size: 30px;
+  font-size: 1.8rem;
   background-color: transparent;
   border: none;
 `;
@@ -68,13 +68,13 @@ const ControlButtonWrapper = styled.div`
 const InfinityTextWrapper = styled.div`
   position: relative;
   padding: 130px 0;
-  font-size: 200px;
+  font-size: 9rem;
   font-weight: 900;
   @media ${({ theme }) => theme.device.mobile} {
-    font-size: 50px;
+    font-size: 3rem;
   }
   @media ${({ theme }) => theme.device.tablet} {
-    font-size: 100px;
+    font-size: 5rem;
   }
 `;
 

@@ -35,12 +35,18 @@ function Title({ id, children }: Title) {
 }
 
 const Heading = styled.h2<{ $appear: boolean }>`
-  font-size: 200px;
+  font-size: 7em;
   font-weight: 900;
   padding: 30px 0;
   transform: ${(props) =>
     props.$appear ? 'translateX(0)' : 'translateX(-100%)'};
   transition: transform 1s;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 5rem;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 4em;
+  }
 `;
 
 export default Title;

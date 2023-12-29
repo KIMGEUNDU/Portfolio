@@ -69,7 +69,7 @@ const randomNumber = keyframes`
 `;
 
 const ProgressBarWrapper = styled.div`
-  font-size: 30px;
+  font-size: 1.875rem;
   position: absolute;
   top: 50%;
   right: 50%;

@@ -176,7 +176,7 @@ const NavItemTitle = styled.span<{ $current: boolean }>`
   height: 20px;
   background-color: black;
   color: white;
-  font-size: 20px;
+  font-size: 1.2rem;
   white-space: nowrap;
 
   @media ${({ theme }) => theme.device.mobile} {
