@@ -11,6 +11,8 @@ function IThink() {
           waitUntilVisible: true,
           keyboard: true,
           lifeLike: true,
+          loop: true,
+          loopDelay: [3000, 5000],
         }}
       />
     </Wrapper>
