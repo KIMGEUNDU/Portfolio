@@ -32,6 +32,10 @@ function NavBar() {
               case 'AboutMe':
                 setBg('yellow');
                 break;
+
+              case 'IThink':
+                setBg('white');
+                break;
             }
           }
         });
@@ -42,11 +46,13 @@ function NavBar() {
     const IntroPage = document.getElementById('IntroMenu');
     const PromisePage = document.getElementById('Promise');
     const AboutMePage = document.getElementById('AboutMe');
+    const IThinkPage = document.getElementById('IThink');
 
-    if (IntroPage && PromisePage && AboutMePage) {
+    if (IntroPage && PromisePage && AboutMePage && IThinkPage) {
       observer.observe(IntroPage);
       observer.observe(PromisePage);
       observer.observe(AboutMePage);
+      observer.observe(IThinkPage);
     }
   }, []);
 
@@ -155,7 +161,9 @@ const NavItem = styled.button<{ $current: boolean; $bg: string }>`
       ? props.theme.themeColor.brown
       : props.$current && props.$bg === 'pink'
       ? props.theme.themeColor.yellow
-      : 'white'};
+      : props.$current && props.$bg === 'white'
+      ? props.theme.themeColor.pink
+      : 'gray'};
   @media ${({ theme }) => theme.device.mobile} {
     width: 15px;
     height: 15px;
