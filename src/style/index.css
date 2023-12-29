@@ -1,5 +1,12 @@
 @import url('https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/complete/WantedSansVariable.min.css');
 
+@font-face {
+  font-family: 'Cafe24Shiningstar';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Shiningstar.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 :root {
   —ti-cursor-font-size: 13px;
 }
