@@ -5,6 +5,7 @@ const themeColor = {
   blue: "#86BEE7",
   green: "#20C997",
   red: "#FF4A4A",
+  gray: "#F6F6F6",
   vsPurple: "#8348FF",
   vsPink: "#FF44BF",
   vsGreen: "#84E97B",
@@ -12,9 +13,9 @@ const themeColor = {
 };
 
 const device = {
-  mobile: `screen and (max-width: 420px)`,
-  tablet: `screen and (min-width: 421px) and (max-width: 768px)`,
-  laptop: `screen and (min-width: 769px) and (max-width: 1024px)`,
+  mobile: `screen and (max-width: 480px)`,
+  tablet: `screen and (min-width: 481px) and (max-width: 768px)`,
+  laptop: `screen and (min-width: 769px) and (max-width: 1279px)`,
 };
 
 const theme = {
