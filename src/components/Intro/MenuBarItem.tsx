@@ -38,6 +38,7 @@ const ItemLink = styled.button`
   border: none;
   position: relative;
   text-align: center;
+  cursor: pointer;
 `;
 
 const Image = styled.img<{ $delayTime: number; $endAnimation: boolean }>`

@@ -32,6 +32,18 @@ function NavBar() {
               case 'AboutMe':
                 setBg('yellow');
                 break;
+
+              case 'IThink':
+                setBg('white');
+                break;
+
+              case 'IThinkDeveloper':
+                setBg('brown');
+                break;
+
+              case 'IThinkWorry':
+                setBg('yellow');
+                break;
             }
           }
         });
@@ -42,11 +54,24 @@ function NavBar() {
     const IntroPage = document.getElementById('IntroMenu');
     const PromisePage = document.getElementById('Promise');
     const AboutMePage = document.getElementById('AboutMe');
+    const IThinkPage = document.getElementById('IThink');
+    const IThinkDeveloperPage = document.getElementById('IThinkDeveloper');
+    const IThinkWorryPage = document.getElementById('IThinkWorry');
 
-    if (IntroPage && PromisePage && AboutMePage) {
+    if (
+      IntroPage &&
+      PromisePage &&
+      AboutMePage &&
+      IThinkPage &&
+      IThinkDeveloperPage &&
+      IThinkWorryPage
+    ) {
       observer.observe(IntroPage);
       observer.observe(PromisePage);
       observer.observe(AboutMePage);
+      observer.observe(IThinkPage);
+      observer.observe(IThinkDeveloperPage);
+      observer.observe(IThinkWorryPage);
     }
   }, []);
 
@@ -84,11 +109,21 @@ function NavBar() {
       </NavItem>
       <NavItem
         id="navItem"
-        $current={currentNavItem === 'IThink'}
+        $current={
+          currentNavItem === 'IThink' ||
+          currentNavItem === 'IThinkDeveloper' ||
+          currentNavItem === 'IThinkWorry'
+        }
         $bg={bg}
         onClick={() => handleNavItemClick('IThink')}
       >
-        <NavItemTitle $current={currentNavItem === 'IThink'}>
+        <NavItemTitle
+          $current={
+            currentNavItem === 'IThink' ||
+            currentNavItem === 'IThinkDeveloper' ||
+            currentNavItem === 'IThinkWorry'
+          }
+        >
           I Think
         </NavItemTitle>
       </NavItem>
@@ -155,7 +190,11 @@ const NavItem = styled.button<{ $current: boolean; $bg: string }>`
       ? props.theme.themeColor.brown
       : props.$current && props.$bg === 'pink'
       ? props.theme.themeColor.yellow
-      : 'white'};
+      : props.$current && props.$bg === 'white'
+      ? props.theme.themeColor.pink
+      : props.$current && props.$bg === 'brown'
+      ? props.theme.themeColor.yellow
+      : props.theme.themeColor.gray};
   @media ${({ theme }) => theme.device.mobile} {
     width: 15px;
     height: 15px;

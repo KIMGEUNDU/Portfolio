@@ -35,17 +35,17 @@ function Title({ id, children }: Title) {
 }
 
 const Heading = styled.h2<{ $appear: boolean }>`
-  font-size: 7em;
+  font-size: 9vw;
   font-weight: 900;
   padding: 30px 0;
   transform: ${(props) =>
     props.$appear ? 'translateX(0)' : 'translateX(-100%)'};
   transition: transform 1s;
   @media ${({ theme }) => theme.device.mobile} {
-    font-size: 5rem;
+    font-size: 20vw;
   }
   @media ${({ theme }) => theme.device.tablet} {
-    font-size: 4em;
+    font-size: 20vw;
   }
 `;
 
