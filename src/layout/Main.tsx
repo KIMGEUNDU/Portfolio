@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import IThink from '@/pages/IThink';
 import IThinkDeveloper from '@/pages/IThinkDeveloper';
 import IThinkWorry from '@/pages/IThinkWorry';
+import Skill from '@/pages/Skill';
 
 function Main() {
   const [endState, setEndState] = useState(false);
@@ -52,6 +53,7 @@ function Main() {
       <IThink />
       <IThinkDeveloper />
       <IThinkWorry />
+      <Skill />
       <NavBar />
       <ContactButton />
     </Wrapper>

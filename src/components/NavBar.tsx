@@ -44,6 +44,10 @@ function NavBar() {
               case 'IThinkWorry':
                 setBg('yellow');
                 break;
+
+              case 'Skill':
+                setBg('white');
+                break;
             }
           }
         });
@@ -57,6 +61,7 @@ function NavBar() {
     const IThinkPage = document.getElementById('IThink');
     const IThinkDeveloperPage = document.getElementById('IThinkDeveloper');
     const IThinkWorryPage = document.getElementById('IThinkWorry');
+    const SkillPage = document.getElementById('Skill');
 
     if (
       IntroPage &&
@@ -64,7 +69,8 @@ function NavBar() {
       AboutMePage &&
       IThinkPage &&
       IThinkDeveloperPage &&
-      IThinkWorryPage
+      IThinkWorryPage &&
+      SkillPage
     ) {
       observer.observe(IntroPage);
       observer.observe(PromisePage);
@@ -72,6 +78,7 @@ function NavBar() {
       observer.observe(IThinkPage);
       observer.observe(IThinkDeveloperPage);
       observer.observe(IThinkWorryPage);
+      observer.observe(SkillPage);
     }
   }, []);
 
