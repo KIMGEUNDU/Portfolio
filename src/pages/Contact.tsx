@@ -111,9 +111,6 @@ function Contact() {
 
 const photoEffect = keyframes`
   0% {
-    opacity: 0;
-  }
-  50% {
     opacity: 1;
     transform: scale(150%);
   }
@@ -156,7 +153,7 @@ const StarAnimation = styled.img<{ $photo: boolean }>`
   ${(props) =>
     !props.$photo &&
     css`
-      animation: ${photoEffect} 1200ms backwards;
+      animation: ${photoEffect} 1s backwards;
     `}
 `;
 
