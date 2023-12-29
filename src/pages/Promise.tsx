@@ -9,7 +9,13 @@ function Promise() {
   const infinityText = 'Constant Challenge　';
 
   return (
-    <Wrapper id="Promise">
+    <Wrapper
+      id="Promise"
+      draggable={true}
+      onDragStart={(e) => {
+        e.preventDefault();
+      }}
+    >
       <MoveLogin>KIMGEONJU</MoveLogin>
       <ControlButtonWrapper>
         <ControlButton

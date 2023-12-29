@@ -13,7 +13,13 @@ function Intro() {
   }, []);
 
   return (
-    <Wrapper $progressBarEnd={endState}>
+    <Wrapper
+      $progressBarEnd={endState}
+      draggable={true}
+      onDragStart={(e) => {
+        e.preventDefault();
+      }}
+    >
       <Container>
         <ProgressBar />
         <PortfolioTitle />

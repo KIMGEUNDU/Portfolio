@@ -3,7 +3,13 @@ import styled from 'styled-components';
 
 function Skill() {
   return (
-    <Wrapper id="Skill">
+    <Wrapper
+      id="Skill"
+      draggable={true}
+      onDragStart={(e) => {
+        e.preventDefault();
+      }}
+    >
       <MyWill>I Grow Up</MyWill>
       {/* Yellow */}
       <SkillItem top={27} left={26} bg="yellow" color="black" deg={-15}>

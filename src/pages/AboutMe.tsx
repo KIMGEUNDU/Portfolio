@@ -4,7 +4,13 @@ import profile from 'assets/aiProfile.png';
 
 function AboutMe() {
   return (
-    <Wrapper id="AboutMe">
+    <Wrapper
+      id="AboutMe"
+      draggable={true}
+      onDragStart={(e) => {
+        e.preventDefault();
+      }}
+    >
       <Title id="aboutMeTitle">AboutMe</Title>
       <ProfileWrapper>
         <ProfileImage src={profile} alt="프로필사진" />

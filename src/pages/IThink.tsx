@@ -3,7 +3,13 @@ import TypeIt from 'typeit-react';
 
 function IThink() {
   return (
-    <Wrapper id="IThink">
+    <Wrapper
+      id="IThink"
+      draggable={true}
+      onDragStart={(e) => {
+        e.preventDefault();
+      }}
+    >
       <TypeIt
         options={{
           strings: ['I Think'],
