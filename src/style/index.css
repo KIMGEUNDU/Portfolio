@@ -1,5 +1,8 @@
 @import url('https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/complete/WantedSansVariable.min.css');
 
+:root {
+  —ti-cursor-font-size: 13px;
+}
 * {
   font-family: 'Wanted Sans Variable', sans-serif;
   font-size: 22px;
