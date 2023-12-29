@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-function PortFolioTitle() {
+function PortfolioTitle() {
   const title = 'GEONJU&PORTFOLIO';
 
   return (
@@ -30,9 +30,12 @@ const Wrapper = styled.div`
   overflow: hidden;
   margin: 40px 0;
   height: 70px;
-  font-size: 60px;
-  @media screen and (max-width: 500px) {
-    font-size: 30px;
+  font-size: 5rem;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 2rem;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 2.5rem;
   }
 `;
 
@@ -42,4 +45,4 @@ const LetterItem = styled.span`
   animation: ${appearLetter} 2s forwards;
 `;
 
-export default PortFolioTitle;
+export default PortfolioTitle;

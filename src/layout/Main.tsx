@@ -1,6 +1,7 @@
 import ContactButton from '@/components/ContactButton';
-import IntroMenu from '@/components/Intro/IntroMenu';
-import Promise from '@/components/Main/Promise';
+import IntroMenu from '@/pages/IntroMenu';
+import AboutMe from '@/pages/AboutMe';
+import Promise from '@/pages/Promise';
 import NavBar from '@/components/NavBar';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -45,6 +46,7 @@ function Main() {
     <Wrapper $progressBarEnd={endState}>
       <IntroMenu />
       <Promise />
+      <AboutMe />
       <NavBar />
       <ContactButton />
     </Wrapper>

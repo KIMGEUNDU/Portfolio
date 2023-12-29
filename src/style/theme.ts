@@ -4,7 +4,11 @@ const themeColor = {
   pink: "#F8BAA0",
   blue: "#86BEE7",
   green: "#20C997",
-  red: "#FF4A4A"
+  red: "#FF4A4A",
+  vsPurple: "#8348FF",
+  vsPink: "#FF44BF",
+  vsGreen: "#84E97B",
+  vsBlue: "#44DDFF",
 };
 
 const device = {

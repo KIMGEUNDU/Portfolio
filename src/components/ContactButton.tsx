@@ -40,6 +40,10 @@ const Button = styled.button<{ $appear: boolean }>`
   width: 100px;
   height: 100px;
   border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
   @media ${({ theme }) => theme.device.mobile} {
     width: 70px;
@@ -60,13 +64,13 @@ const ButtonImg = styled.img`
 `;
 
 const ButtonText = styled.span`
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: 600;
   @media ${({ theme }) => theme.device.mobile} {
-    font-size: 10px;
+    font-size: 0.7rem;
   }
   @media ${({ theme }) => theme.device.tablet} {
-    font-size: 12px;
+    font-size: 0.8rem;
   }
 `;
 

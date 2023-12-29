@@ -2,20 +2,20 @@ import { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 function MenuBarItem({
-  link,
   img,
   delayTime = 1,
+  onClick,
   children,
 }: {
-  link: string;
   img: string;
   delayTime?: number;
+  onClick: () => void;
   children: string;
 }) {
   const [endAnimation, setEndAnimation] = useState(false);
 
   return (
-    <ItemLink id="navLink" href={link}>
+    <ItemLink id="navLink" onClick={onClick}>
       <Image
         src={img}
         alt="Designed by Freepik"
@@ -33,7 +33,9 @@ const appearImage = keyframes`
     100%{opacity: 1; transform: scale(1)}
 `;
 
-const ItemLink = styled.a`
+const ItemLink = styled.button`
+  background-color: transparent;
+  border: none;
   position: relative;
   text-align: center;
 `;
@@ -43,7 +45,7 @@ const Image = styled.img<{ $delayTime: number; $endAnimation: boolean }>`
   max-width: 80%;
   animation: ${appearImage} 2s linear ${(props) => props.$delayTime}s forwards;
   @media ${({ theme }) => theme.device.mobile} {
-    width: 30%;
+    width: 40%;
   }
   @media ${({ theme }) => theme.device.tablet} {
     width: 40%;
@@ -51,7 +53,7 @@ const Image = styled.img<{ $delayTime: number; $endAnimation: boolean }>`
 `;
 
 const ImageTitle = styled.span`
-  font-size: 25px;
+  font-size: 1.3rem;
   opacity: 0;
   position: absolute;
   top: 50%;
@@ -64,8 +66,11 @@ const ImageTitle = styled.span`
     transition: opacity 0.5s;
     opacity: 1;
   }
-  @media screen and (max-width: 500px) {
-    font-size: 15px;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 1rem;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 1.3rem;
   }
 `;
 
