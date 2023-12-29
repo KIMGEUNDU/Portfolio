@@ -38,6 +38,9 @@ dependencies:
   react-router-dom:
     specifier: ^6.21.0
     version: 6.21.0(react-dom@18.2.0)(react@18.2.0)
+  typeit-react:
+    specifier: ^2.7.0
+    version: 2.7.0
   zustand:
     specifier: ^4.4.7
     version: 4.4.7(@types/react@18.2.43)(react@18.2.0)
@@ -752,6 +755,10 @@ packages:
   /@types/stylis@4.2.4:
     resolution: {integrity: sha512-36ZrGJ8fgtBr6nwNnuJ9jXIj+bn/pF6UoqmrQT7+Y99+tFFeHHsoR54+194dHdyhPjgbeoNz3Qru0oRt0l6ASQ==}
     dev: true
+
+  /@types/web-animations-js@2.2.16:
+    resolution: {integrity: sha512-ATELeWMFwj8eQiH0KmvsCl1V2lu/qx/CjOBmv4ADSZS5u8r4reMyjCXtxG7khqyiwH3IOMNdrON/Ugn94OUcRA==}
+    dev: false
 
   /@typescript-eslint/eslint-plugin@6.14.0(@typescript-eslint/parser@6.14.0)(eslint@8.55.0)(typescript@5.2.2):
     resolution: {integrity: sha512-1ZJBykBCXaSHG94vMMKmiHoL0MhNHKSVlcHVYZNw+BKxufhqQVTOawNpwwI1P5nIFZ/4jLVop0mcY6mJJDFNaw==}
@@ -3437,6 +3444,21 @@ packages:
     resolution: {integrity: sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w==}
     engines: {node: '>=10'}
     dev: true
+
+  /typeit-react@2.7.0:
+    resolution: {integrity: sha512-8Jq5RKZPUllZWSdvC4E2Of6qSyxp92xzH3B6bzq9NftLo39A7n8UDuPbd9k//0mKEc2jSKfl9tn5aQPNCVfTuQ==}
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      typeit: 8.8.0
+    dev: false
+
+  /typeit@8.8.0:
+    resolution: {integrity: sha512-GQp6OW7vxro1HN3F7UPL0C2KzkGs8bFtUgmJSeK+xNhdofI40mkWxrBT2AXQwtS5Txkg7ttwplxvWCQxnUXyrw==}
+    requiresBuild: true
+    dependencies:
+      '@types/web-animations-js': 2.2.16
+    dev: false
 
   /typescript@5.2.2:
     resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
