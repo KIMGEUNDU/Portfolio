@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 interface SkillItem {
@@ -11,13 +12,27 @@ interface SkillItem {
 
 function SkillItem({ children, top, left, bg, color, deg }: SkillItem) {
   return (
-    <Item $top={top} $left={left} $bg={bg} $color={color} $deg={deg}>
+    <Item
+      $top={top}
+      $left={left}
+      $bg={bg}
+      $color={color}
+      $deg={deg}
+      drag
+      dragConstraints={{
+        top: -100,
+        left: -100,
+        right: 100,
+        bottom: 100,
+      }}
+      style={{ rotate: `${deg}deg` }}
+    >
       {children}
     </Item>
   );
 }
 
-const Item = styled.span<{
+const Item = styled(motion.span)<{
   $top: number;
   $left: number;
   $bg: string;
@@ -34,7 +49,6 @@ const Item = styled.span<{
       ? props.theme.themeColor.yellow
       : props.theme.themeColor.brown};
   color: ${(props) => (props.$color === 'black' ? 'black' : 'white')};
-  transform: ${(props) => `rotate(${props.$deg}deg)`};
   border-radius: 100px;
   font-size: 3vw;
   padding: 1% 2%;
