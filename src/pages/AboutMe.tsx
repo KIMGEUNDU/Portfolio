@@ -88,16 +88,30 @@ const Wrapper = styled.div`
 `;
 
 const ProfileWrapper = styled.div`
-  height: 500px;
+  height: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 3%;
+  @media ${({ theme }) => theme.device.mobile} {
+    height: 700px;
+    flex-direction: column;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    height: 650px;
+    flex-direction: column;
+  }
 `;
 
 const ProfileImage = styled.img`
   width: 30%;
   height: auto;
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 50%;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    width: 40%;
+  }
 `;
 
 const ProfileDescription = styled.div`
@@ -111,6 +125,15 @@ const ProfileDescription = styled.div`
   height: auto;
   border-radius: 20px;
   font-size: 1.5vw;
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 80%;
+    font-size: 4vw;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    width: 80%;
+    padding: 2%;
+    font-size: 2vw;
+  }
 `;
 
 const P = styled.p`

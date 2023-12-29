@@ -41,6 +41,12 @@ const Heading = styled.h2<{ $appear: boolean }>`
   transform: ${(props) =>
     props.$appear ? 'translateX(0)' : 'translateX(-100%)'};
   transition: transform 1s;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 20vw;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 20vw;
+  }
 `;
 
 export default Title;
