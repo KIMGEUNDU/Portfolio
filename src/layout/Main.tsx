@@ -6,6 +6,8 @@ import NavBar from '@/components/NavBar';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import IThink from '@/pages/IThink';
+import IThinkDeveloper from '@/pages/IThinkDeveloper';
+import IThinkWorry from '@/pages/IThinkWorry';
 
 function Main() {
   const [endState, setEndState] = useState(false);
@@ -48,6 +50,8 @@ function Main() {
       <Promise />
       <AboutMe />
       <IThink />
+      <IThinkDeveloper />
+      <IThinkWorry />
       <NavBar />
       <ContactButton />
     </Wrapper>
