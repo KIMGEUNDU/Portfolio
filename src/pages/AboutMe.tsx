@@ -110,13 +110,7 @@ const ProfileDescription = styled.div`
   width: 50%;
   height: auto;
   border-radius: 20px;
-  font-size: 1.4rem;
-  @media ${({ theme }) => theme.device.mobile} {
-    font-size: 1rem;
-  }
-  @media ${({ theme }) => theme.device.tablet} {
-    font-size: 1rem;
-  }
+  font-size: 1.5vw;
 `;
 
 const P = styled.p`

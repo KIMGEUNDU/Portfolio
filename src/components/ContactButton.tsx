@@ -37,22 +37,16 @@ const Button = styled.button<{ $appear: boolean }>`
   right: 30px;
   background-color: black;
   color: white;
-  width: 100px;
-  height: 100px;
+  width: 6vw;
+  height: 6vw;
+  min-width: 75px;
+  min-height: 75px;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  @media ${({ theme }) => theme.device.mobile} {
-    width: 70px;
-    height: 70px;
-  }
-  @media ${({ theme }) => theme.device.tablet} {
-    width: 90px;
-    height: 90px;
-  }
 `;
 
 const ButtonImg = styled.img`
@@ -64,12 +58,15 @@ const ButtonImg = styled.img`
 `;
 
 const ButtonText = styled.span`
-  font-size: 1rem;
+  font-size: 1vw;
   font-weight: 600;
   @media ${({ theme }) => theme.device.mobile} {
     font-size: 0.7rem;
   }
   @media ${({ theme }) => theme.device.tablet} {
+    font-size: 0.8rem;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
     font-size: 0.8rem;
   }
 `;
