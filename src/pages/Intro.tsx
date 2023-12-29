@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import PortfolioTitle from 'components/Intro/PortfolioTitle';
-import ProgressBar from '../components/Intro/ProgressBar';
+import ProgressBar from '@/components/Intro/ProgressBar';
+import PortfolioTitle from '@/components/Intro/PortfolioTitle';
 
 function Intro() {
   const [endState, setEndState] = useState(false);
