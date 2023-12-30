@@ -18,7 +18,7 @@ function IThink() {
           keyboard: true,
           lifeLike: true,
           loop: true,
-          loopDelay: [3000, 5000],
+          loopDelay: [1500, 7000],
         }}
       />
     </Wrapper>
