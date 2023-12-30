@@ -3,7 +3,13 @@ import styled from 'styled-components';
 
 function IThinkWorry() {
   return (
-    <Wrapper id="IThinkWorry">
+    <Wrapper
+      id="IThinkWorry"
+      draggable={true}
+      onDragStart={(e) => {
+        e.preventDefault();
+      }}
+    >
       <P>
         유저의 관점에서는&#160;
         <EmphasisText color="pink">접근성</EmphasisText>을 고려하고

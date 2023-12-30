@@ -7,11 +7,11 @@ function NavBar() {
   const [bg, setBg] = useState('yellow');
   const [currentNavItem, setCurrentNavItem] = useState('IntroMenu');
 
-  function handleNavItemClick(id: string) {
+  const handleNavItemClick = (id: string) => {
     setCurrentNavItem(id);
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: 'smooth' });
-  }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -48,6 +48,10 @@ function NavBar() {
               case 'Skill':
                 setBg('white');
                 break;
+
+              case 'Contact':
+                setBg('pink');
+                break;
             }
           }
         });
@@ -62,6 +66,7 @@ function NavBar() {
     const IThinkDeveloperPage = document.getElementById('IThinkDeveloper');
     const IThinkWorryPage = document.getElementById('IThinkWorry');
     const SkillPage = document.getElementById('Skill');
+    const ContactPage = document.getElementById('Contact');
 
     if (
       IntroPage &&
@@ -70,7 +75,8 @@ function NavBar() {
       IThinkPage &&
       IThinkDeveloperPage &&
       IThinkWorryPage &&
-      SkillPage
+      SkillPage &&
+      ContactPage
     ) {
       observer.observe(IntroPage);
       observer.observe(PromisePage);
@@ -79,6 +85,7 @@ function NavBar() {
       observer.observe(IThinkDeveloperPage);
       observer.observe(IThinkWorryPage);
       observer.observe(SkillPage);
+      observer.observe(ContactPage);
     }
   }, []);
 
@@ -150,6 +157,16 @@ function NavBar() {
       >
         <NavItemTitle $current={currentNavItem === 'Project'}>
           Project
+        </NavItemTitle>
+      </NavItem>
+      <NavItem
+        id="navItem"
+        $current={currentNavItem === 'Contact'}
+        $bg={bg}
+        onClick={() => handleNavItemClick('Contact')}
+      >
+        <NavItemTitle $current={currentNavItem === 'Contact'}>
+          Contact
         </NavItemTitle>
       </NavItem>
     </Wrapper>

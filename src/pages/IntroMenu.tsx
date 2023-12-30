@@ -22,7 +22,13 @@ function IntroMenu() {
   }, []);
 
   return (
-    <Wrapper id="IntroMenu">
+    <Wrapper
+      id="IntroMenu"
+      draggable={true}
+      onDragStart={(e) => {
+        e.preventDefault();
+      }}
+    >
       <MenuBarItem img={aboutMe} onClick={() => movePage('AboutMe')}>
         About Me
       </MenuBarItem>

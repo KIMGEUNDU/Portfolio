@@ -3,7 +3,13 @@ import styled from 'styled-components';
 
 function IThinkDeveloper() {
   return (
-    <Wrapper id="IThinkDeveloper">
+    <Wrapper
+      id="IThinkDeveloper"
+      draggable={true}
+      onDragStart={(e) => {
+        e.preventDefault();
+      }}
+    >
       <p>개발자란</p>
       <p>개발만 하는 것이 아닌</p>
       <p>
