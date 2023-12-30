@@ -98,12 +98,12 @@ function Contact() {
           <LinkButton as={IoBookmarkSharp} onClick={bookMarkClicked} />
         </LinkButtonWrapper>
         <LikeCount>{`좋아요 ${like}개`}</LikeCount>
-        <p style={{ padding: '0 2%' }}>
-          <FeedTextStyle $weight={600}>KIMGEONJU&#160;&#160;</FeedTextStyle>
+        <FeetText>
+          <span style={{ fontWeight: '600' }}>KIMGEONJU&#160;&#160;</span>
           emailAddress&#160;
-          <FeedTextStyle $emphasis={true}>"vlkoklv@naver.com"</FeedTextStyle>
-          <FeedTextStyle $size={1}>&#160;&#160;&#160;...더보기</FeedTextStyle>
-        </p>
+          <span style={{ color: 'red' }}>"vlkoklv@naver.com"</span>
+          <FeedMoreText>&#160;&#160;&#160;...더보기</FeedMoreText>
+        </FeetText>
       </InstagramWrapper>
     </Wrapper>
   );
@@ -131,8 +131,17 @@ const Wrapper = styled.div`
 
 const InstagramWrapper = styled.div`
   border: 3px solid white;
-  width: 30%;
+  width: 40%;
   height: 80%;
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 80%;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    width: 70%;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    width: 50%;
+  }
 `;
 
 const InstagramButton = styled.button<{ $photo?: boolean }>`
@@ -167,7 +176,16 @@ const InstagramHeader = styled.div`
 
 const Title = styled.h2`
   font-family: 'Cafe24Shiningstar';
-  font-size: 2vw;
+  font-size: 3vw;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 9vw;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 6vw;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    font-size: 4vw;
+  }
 `;
 
 const User = styled.div`
@@ -175,11 +193,12 @@ const User = styled.div`
   align-items: center;
   gap: 2%;
   padding: 2%;
+  height: 70px;
 `;
 
 const UserImage = styled.img`
   width: 70px;
-  height: 70px;
+  height: 100%;
   border-radius: 50%;
   border: 5px solid transparent;
   background-image: linear-gradient(#fff, #fff),
@@ -191,11 +210,26 @@ const UserImage = styled.img`
     );
   background-origin: border-box;
   background-clip: content-box, border-box;
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 60px;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    width: 65px;
+  }
 `;
 
 const UserName = styled.p`
   flex-grow: 1;
   font-size: 1.5vw;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 3vw;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 4vw;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    font-size: 2vw;
+  }
 `;
 
 const UserMoreButton = styled.button`
@@ -239,7 +273,7 @@ const LinkButton = styled(motion.button)<{ $color?: string }>`
 
 const Link = styled.a<{ $margin?: number }>`
   display: inline-block;
-  width: 42px;
+  width: 42%;
   height: 40px;
   margin: ${(props) => (props.$margin ? `0 ${props.$margin}px` : 0)};
 `;
@@ -253,16 +287,44 @@ const LinkButtonImg = styled.img`
 const LikeCount = styled.p`
   padding: 2%;
   font-size: 1.2vw;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 4vw;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 3vw;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    font-size: 2vw;
+  }
 `;
 
-const FeedTextStyle = styled.span<{
-  $weight?: number;
-  $emphasis?: boolean;
-  $size?: number;
-}>`
-  font-weight: ${(props) => (props.$weight ? props.$weight : 400)};
-  color: ${(props) => (props.$emphasis ? props.theme.themeColor.red : 'white')};
-  font-size: ${(props) => (props.$size ? `${props.$size}vw` : '1.2vw')};
+const FeetText = styled.p`
+  padding: 0 2%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 3.5vw;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 3vw;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    font-size: 2vw;
+  }
+`;
+
+const FeedMoreText = styled.span`
+  font-size: 1.1vw;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 2.5vw;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 2.5vw;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    font-size: 1.5vw;
+  }
 `;
 
 export default Contact;
