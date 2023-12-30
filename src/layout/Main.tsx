@@ -10,6 +10,7 @@ import IThinkDeveloper from '@/pages/IThinkDeveloper';
 import IThinkWorry from '@/pages/IThinkWorry';
 import Skill from '@/pages/Skill';
 import Contact from '@/pages/Contact';
+import Project from '@/pages/Project';
 
 function Main() {
   const [endState, setEndState] = useState(false);
@@ -55,6 +56,7 @@ function Main() {
       <IThinkDeveloper />
       <IThinkWorry />
       <Skill />
+      <Project />
       <Contact />
       <NavBar />
       <ContactButton />
