@@ -114,6 +114,7 @@ const Button = styled.button<{ $appear: boolean }>`
   align-items: center;
   overflow: hidden;
   transform: rotate(-80deg);
+  z-index: 10;
 `;
 
 const ButtonImg = styled.img`
