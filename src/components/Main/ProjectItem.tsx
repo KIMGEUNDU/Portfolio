@@ -31,10 +31,8 @@ function ProjectItem({ type }: { type: string }) {
       <figcaption>
         <Name>프로젝트명</Name>
         <Explanation>
-          이러이러한 프로젝트이다이러이러한 프로젝트이다이러이러한
-          프로젝트이다이러이러한 프로젝트이다이러이러한 프로젝트이다이러이러한
-          프로젝트이다이러이러한 프로젝트이다이러이러한 프로젝트이다이러이러한
-          프로젝트이다이러이러한 프로젝트이다이러이러한 프로젝트이다
+          프로젝트 요약입니다.프로젝트 요약입니다.프로젝트 요약입니다.프로젝트
+          요약입니다.프로젝트 요약입니다.
         </Explanation>
         <TagWrapper>
           <Tag value={value} />
@@ -48,6 +46,7 @@ const Wrapper = styled.figure`
   width: 100%;
   height: 100%;
   overflow: hidden;
+  cursor: pointer;
 `;
 
 const ThumnailWrapper = styled.div`
@@ -82,6 +81,12 @@ const Mobile = styled.img`
   width: 35%;
   height: 100%;
   z-index: 1;
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 50%;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    width: 50%;
+  }
 `;
 
 const ThumnailMobile = styled.img`
@@ -91,24 +96,47 @@ const ThumnailMobile = styled.img`
   border-radius: 20px;
   padding-top: 10px;
   padding-bottom: 2px;
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 47%;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    width: 47%;
+  }
 `;
 
 const Name = styled.p`
-  font-size: 2vw;
+  font-size: 1.8vw;
   padding: 20px 2%;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 7vw;
+    padding: 10px 2%;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 5vw;
+    padding: 10px 2%;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    font-size: 4vw;
+    padding: 10px 2%;
+  }
 `;
 
 const Explanation = styled.p`
   padding: 0 2%;
-  font-size: 1.2vw;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-break: break-all;
+  font-size: 1vw;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 3vw;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 2.5vw;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    font-size: 1.5vw;
+  }
 `;
 
 const TagWrapper = styled.p`
-  padding: 15% 2%;
+  padding: 5% 2%;
   display: flex;
   gap: 2%;
 `;
