@@ -115,6 +115,9 @@ const Button = styled.button<{ $appear: boolean }>`
   overflow: hidden;
   transform: rotate(-80deg);
   z-index: 10;
+  @media ${({ theme }) => theme.device.mobile} {
+    bottom: 60px;
+  }
 `;
 
 const ButtonImg = styled.img`
