@@ -9,10 +9,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import bulletActive from '@/assets/bulletActive.png';
 import bullet from '@/assets/bullet.png';
 import ProjectItem from '@/components/Main/ProjectItem';
+import AddButton from '@/components/Main/AddButton';
 
 function Project() {
   return (
-    <Wrapper id="Project">
+    <Wrapper
+      id="Project"
+      draggable={true}
+      onDragStart={(e) => {
+        e.preventDefault();
+      }}
+    >
       <Title id="Project" color={true}>
         Project
       </Title>
@@ -20,7 +27,7 @@ function Project() {
         <SwiperBox
           modules={[Navigation, Pagination, A11y]}
           spaceBetween={50}
-          slidesPerView={3}
+          slidesPerView={1}
           navigation={{
             nextEl: '.swiper-next',
             prevEl: '.swiper-prev',
@@ -29,16 +36,30 @@ function Project() {
             el: '.swiper-pagination',
             clickable: true,
           }}
+          breakpoints={{
+            480: {
+              slidesPerView: 1,
+              spaceBetween: 50,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 50,
+            },
+            1279: {
+              slidesPerView: 3,
+              spaceBetween: 50,
+            },
+          }}
         >
           {Array.from({ length: 3 })
             .fill('')
             .map((_, i) => {
               return (
-                <div>
-                  <SwiperItem key={i}>
+                <div key={i}>
+                  <SwiperItem>
                     <ProjectItem type="web" />
                   </SwiperItem>
-                  <SwiperItem key={i + 1}>
+                  <SwiperItem>
                     <ProjectItem type="mobile" />
                   </SwiperItem>
                 </div>
@@ -48,7 +69,9 @@ function Project() {
           <Next className="swiper-next" as={GrNext} />
           <Page className="swiper-pagination" />
         </SwiperBox>
-        <ProjectAdd>Add Project</ProjectAdd>
+        <AddButton top={-12} right={12} color="white">
+          Add Project
+        </AddButton>
       </SwiperWrapper>
     </Wrapper>
   );
@@ -68,6 +91,15 @@ const SwiperWrapper = styled.div`
   padding: 0 10%;
   height: 60%;
   position: relative;
+  @media ${({ theme }) => theme.device.mobile} {
+    height: 70%;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    height: 65%;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    height: 70%;
+  }
 `;
 
 const SwiperBox = styled(Swiper)`
@@ -144,18 +176,6 @@ const Page = styled.p`
     background-position: center;
     background-size: contain;
   }
-`;
-
-const ProjectAdd = styled.button`
-  position: absolute;
-  top: -12%;
-  right: 12%;
-  background-color: transparent;
-  color: white;
-  padding: 5px;
-  border: 1px solid white;
-  border-radius: 5px;
-  cursor: pointer;
 `;
 
 export default Project;
