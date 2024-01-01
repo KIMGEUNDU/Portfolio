@@ -1,3 +1,4 @@
+import AddButton from '@/components/Main/AddButton';
 import SkillItem from '@/components/Main/SkillItem';
 import styled from 'styled-components';
 
@@ -56,6 +57,9 @@ function Skill() {
       <SkillItem top={30} left={70} bg="pink" color="black" deg={-20}>
         TypeScript
       </SkillItem>
+      <AddButton top={5} right={5} color="#F8BAA0">
+        Add Skill
+      </AddButton>
     </Wrapper>
   );
 }
