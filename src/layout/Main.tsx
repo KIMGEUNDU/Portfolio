@@ -11,35 +11,10 @@ import IThinkWorry from '@/pages/IThinkWorry';
 import Skill from '@/pages/Skill';
 import Contact from '@/pages/Contact';
 import Project from '@/pages/Project';
+import { FullPage, Slide } from 'react-full-page';
 
 function Main() {
   const [endState, setEndState] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
-
-  // window 스크롤 이벤트
-  function handleScroll(e: WheelEvent) {
-    e.preventDefault();
-
-    const delta = e.deltaY;
-    const windowHeight = window.innerHeight;
-
-    if (delta > 0) {
-      setScrollPosition(scrollPosition + windowHeight);
-    } else {
-      if (window.scrollY === 0) {
-        return;
-      } else {
-        setScrollPosition(scrollPosition - windowHeight);
-      }
-    }
-
-    window.scrollTo({
-      top: scrollPosition,
-      behavior: 'smooth',
-    });
-  }
-
-  window.addEventListener('wheel', handleScroll, { passive: false });
 
   useEffect(() => {
     setTimeout(() => {
@@ -49,15 +24,35 @@ function Main() {
 
   return (
     <Wrapper $progressBarEnd={endState}>
-      <IntroMenu />
-      <Promise />
-      <AboutMe />
-      <IThink />
-      <IThinkDeveloper />
-      <IThinkWorry />
-      <Skill />
-      <Project />
-      <Contact />
+      <FullPage duration={500}>
+        <Slide>
+          <IntroMenu />
+        </Slide>
+        <Slide>
+          <Promise />
+        </Slide>
+        <Slide>
+          <AboutMe />
+        </Slide>
+        <Slide>
+          <IThink />
+        </Slide>
+        <Slide>
+          <IThinkDeveloper />
+        </Slide>
+        <Slide>
+          <IThinkWorry />
+        </Slide>
+        <Slide>
+          <Skill />
+        </Slide>
+        <Slide>
+          <Project />
+        </Slide>
+        <Slide>
+          <Contact />
+        </Slide>
+      </FullPage>
       <NavBar />
       <ContactButton />
     </Wrapper>
