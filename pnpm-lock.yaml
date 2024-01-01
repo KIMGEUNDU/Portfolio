@@ -41,6 +41,9 @@ dependencies:
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
+  react-full-page:
+    specifier: ^0.1.12
+    version: 0.1.12(react-dom@18.2.0)(react@18.2.0)
   react-helmet-async:
     specifier: ^2.0.3
     version: 2.0.3(react-dom@18.2.0)(react@18.2.0)
@@ -1677,6 +1680,11 @@ packages:
 
   /convert-source-map@1.9.0:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
+    dev: false
+
+  /core-js@3.35.0:
+    resolution: {integrity: sha512-ntakECeqg81KqMueeGJ79Q5ZgQNR+6eaE8sxGCx62zMbAIj65q+uYvatToew3m6eAGdU4gNZwpZ34NMe4GYswg==}
+    requiresBuild: true
     dev: false
 
   /core-util-is@1.0.3:
@@ -3428,6 +3436,17 @@ packages:
 
   /react-fast-compare@3.2.2:
     resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
+    dev: false
+
+  /react-full-page@0.1.12(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Bk6gcxANuWNkeBNmaTUNRcA05zDBqJaTKxlr78dC59gsXhiWPODa8kcrDHClaRAc6JkH16jzbCOO1mNH9Ta1jQ==}
+    peerDependencies:
+      react: ^0.14.10 || ^15.0.0 || ^16.0.0 || ^17.0.0
+      react-dom: ^0.14.10 || ^15.0.0 || ^16.0.0 || ^17.0.0
+    dependencies:
+      core-js: 3.35.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react-helmet-async@2.0.3(react-dom@18.2.0)(react@18.2.0):
