@@ -1,4 +1,11 @@
+import bullet from '@/assets/bullet.png';
+import bulletActive from '@/assets/bulletActive.png';
+import AddButton from '@/components/Main/AddButton';
+import ProjectItem from '@/components/Main/ProjectItem';
+import ProjectModal from '@/components/Main/ProjectModal';
 import Title from '@/components/Main/Title';
+import { useModal } from '@/store/useModal';
+import { useState } from 'react';
 import { GrNext, GrPrevious } from 'react-icons/gr';
 import styled from 'styled-components';
 import 'swiper/css';
@@ -6,12 +13,11 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { A11y, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import bulletActive from '@/assets/bulletActive.png';
-import bullet from '@/assets/bullet.png';
-import ProjectItem from '@/components/Main/ProjectItem';
-import AddButton from '@/components/Main/AddButton';
 
 function Project() {
+  const { open } = useModal();
+  const [, setAdd] = useState(false);
+
   return (
     <Wrapper
       id="Project"
@@ -69,15 +75,22 @@ function Project() {
           <Next className="swiper-next" as={GrNext} />
           <Page className="swiper-pagination" />
         </SwiperBox>
-        <AddButton top={-12} right={12} color="white">
+        <AddButton
+          onClick={() => setAdd(true)}
+          top={-12}
+          right={12}
+          color="white"
+        >
           Add Project
         </AddButton>
       </SwiperWrapper>
+      {open && <ProjectModal type="mobile" />}
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
+  position: relative;
   width: 100vw;
   height: 100vh;
   background-color: ${(props) => props.theme.themeColor.brown};
@@ -127,7 +140,7 @@ const Next = styled.button`
   width: 50px;
   height: 50px;
   cursor: pointer;
-  z-index: 2;
+  z-index: 1;
   outline: none;
   border: none;
 
@@ -146,7 +159,7 @@ const Prev = styled.button`
   width: 50px;
   height: 50px;
   cursor: pointer;
-  z-index: 2;
+  z-index: 1;
   outline: none;
   border: none;
   &.swiper-button-disabled {
