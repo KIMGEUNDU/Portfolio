@@ -5,11 +5,18 @@ interface AddButton {
   top: number;
   right: number;
   color: string;
+  onClick: () => void;
 }
 
-function AddButton({ children, top, right, color }: AddButton) {
+function AddButton({ children, top, right, color, onClick }: AddButton) {
   return (
-    <Button type="button" $top={top} $right={right} $color={color}>
+    <Button
+      type="button"
+      onClick={onClick}
+      $top={top}
+      $right={right}
+      $color={color}
+    >
       {children}
     </Button>
   );
