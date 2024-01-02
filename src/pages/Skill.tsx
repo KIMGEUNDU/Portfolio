@@ -1,8 +1,12 @@
 import AddButton from '@/components/Main/AddButton';
+import AddSkillModal from '@/components/Main/AddSkillModal';
 import SkillItem from '@/components/Main/SkillItem';
+import { useModal } from '@/store/useModal';
 import styled from 'styled-components';
 
 function Skill() {
+  const { skill, setSkill } = useModal();
+
   return (
     <Wrapper
       id="Skill"
@@ -57,9 +61,15 @@ function Skill() {
       <SkillItem top={30} left={70} bg="pink" color="black" deg={-20}>
         TypeScript
       </SkillItem>
-      <AddButton top={5} right={5} color="#F8BAA0">
+      <AddButton
+        top={5}
+        right={5}
+        color="#F8BAA0"
+        onClick={() => setSkill(true)}
+      >
         Add Skill
       </AddButton>
+      {skill && <AddSkillModal />}
     </Wrapper>
   );
 }
