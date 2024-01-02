@@ -2,16 +2,18 @@ import styled from 'styled-components';
 import Tag from './Tag';
 import mac from '@/assets/mac.png';
 import iphone from '@/assets/iphone.png';
+import { useModal } from '@/store/useModal';
 
 function ProjectItem({ type }: { type: string }) {
   const value = ['React', 'Javascript', 'Typescript'];
+  const { setOpen } = useModal();
 
   return (
     <Wrapper>
-      <ThumnailWrapper>
+      <ThumnailWrapper onClick={() => setOpen(true)}>
         {type === 'web' && (
           <>
-            <Mac src={mac} alt="웹사이트 프로젝트" />
+            <Mac src={mac} alt="Designed by Freepik" />
             <ThumnailWeb
               src="https://github.com/KIMGEUNDU/Portfolio/assets/126174401/4e61232b-a4d8-430f-80ca-568277e84878"
               alt="프로젝트 이미지"
@@ -20,7 +22,7 @@ function ProjectItem({ type }: { type: string }) {
         )}
         {type === 'mobile' && (
           <>
-            <Mobile src={iphone} alt="모바일 프로젝트" />
+            <Mobile src={iphone} alt="Designed by Freepik" />
             <ThumnailMobile
               src="https://user-images.githubusercontent.com/86372549/270151749-17d2d9a1-3b09-4981-a8ff-f5a96888f581.gif"
               alt="프로젝트 이미지"
