@@ -92,14 +92,7 @@ function AddSkillModal() {
         </ThumnailWrapper>
         <FormWrapper onSubmit={submitSkill}>
           <ExceptButton>
-            <div
-              style={{
-                flexGrow: 1,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '10px',
-              }}
-            >
+            <ExceptPreview>
               <StyleWrapper>
                 <fieldset style={{ whiteSpace: 'nowrap' }}>
                   <Label htmlFor="rotate">각도</Label>
@@ -183,30 +176,33 @@ function AddSkillModal() {
                   <span>left</span>
                 </fieldset>
               </StyleWrapper>
-              <fieldset>
-                <Label htmlFor="bgColor" $bg={true}>
-                  배경색
-                </Label>
-                <Input
-                  id="bgColor"
-                  name="bgColor"
-                  type="color"
-                  onChange={(e) => setBg(e.target.value)}
-                />
-              </fieldset>
-              <fieldset>
-                <Label htmlFor="skill">기술</Label>
-                <Input
-                  id="skill"
-                  name="skill"
-                  type="text"
-                  onChange={(e) => setSkillName(e.target.value)}
-                  autoComplete="off"
-                  $type="text"
-                  required
-                />
-              </fieldset>
-            </div>
+              <StyleWrapper>
+                <fieldset>
+                  <Label htmlFor="bgColor">배경색</Label>
+                  <Input
+                    id="bgColor"
+                    name="bgColor"
+                    type="color"
+                    onChange={(e) => setBg(e.target.value)}
+                  />
+                </fieldset>
+              </StyleWrapper>
+              <StyleWrapper>
+                <fieldset>
+                  <Label htmlFor="skill">기술</Label>
+                  <Input
+                    id="skill"
+                    name="skill"
+                    type="text"
+                    onChange={(e) => setSkillName(e.target.value)}
+                    autoComplete="off"
+                    $type="text"
+                    required
+                    maxLength={17}
+                  />
+                </fieldset>
+              </StyleWrapper>
+            </ExceptPreview>
             <PreviewWrapper>
               <Span>I GROW UP</Span>
               <Priview
@@ -238,7 +234,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3;
+  z-index: 4;
   overflow: hidden;
 `;
 
@@ -248,6 +244,17 @@ const Skill = styled.div`
   width: 50%;
   height: 50%;
   padding-bottom: 30px;
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 80%;
+    height: 60%;
+    padding-bottom: 0;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    width: 80%;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    width: 80%;
+  }
 `;
 
 const ControlWrapper = styled.div`
@@ -276,6 +283,15 @@ const ThumnailWrapper = styled.div`
   position: relative;
   margin-bottom: 20px;
   height: 40%;
+  @media ${({ theme }) => theme.device.mobile} {
+    height: 25%;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    height: 30%;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    height: 40%;
+  }
 `;
 
 const Thumnail = styled.img`
@@ -291,18 +307,40 @@ const Icon = styled.span`
   transform: translateY(50%);
   font-size: 5vw;
   padding: 0 5%;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 10vw;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 10vw;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    font-size: 7vw;
+  }
 `;
 
 const FormWrapper = styled.form`
   box-sizing: border-box;
   width: 100%;
-  height: 100%;
+  height: 60%;
   border-radius: 0 0 10px 10px;
   padding: 2% 5%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  font-size: 1.3vw;
+  @media ${({ theme }) => theme.device.mobile} {
+    padding: 1% 5%;
+    height: 90%;
+    font-size: 3vw;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    padding: 1% 5%;
+    font-size: 2.5vw;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    padding: 1% 5%;
+    font-size: 2.5vw;
+    height: 100%;
+  }
 `;
 
 const ExceptButton = styled.div`
@@ -310,18 +348,50 @@ const ExceptButton = styled.div`
   justify-content: space-between;
   gap: 30px;
   width: 100%;
-  height: 35%;
+  height: 70%;
+  @media ${({ theme }) => theme.device.mobile} {
+    flex-direction: column;
+    height: 60%;
+    gap: 10px;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    height: 100%;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    height: 40%;
+  }
+`;
+
+const ExceptPreview = styled.div`
+  justify-content: space-between;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: '10px';
+  @media ${({ theme }) => theme.device.tablet} {
+    gap: 0;
+  }
 `;
 
 const StyleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 20px;
+  @media ${({ theme }) => theme.device.mobile} {
+    flex-direction: column;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    flex-direction: column;
+  }
 `;
 
-const Label = styled.label<{ $bg?: boolean }>`
+const Label = styled.label`
   white-space: nowrap;
-  padding-right: ${(props) => (props.$bg ? '10px' : '30px')};
+  width: 60px;
+  display: inline-block;
+  @media ${({ theme }) => theme.device.laptop} {
+    width: 90px;
+  }
 `;
 
 const Input = styled.input<{ $type?: string }>`
@@ -343,6 +413,27 @@ const Input = styled.input<{ $type?: string }>`
     -moz-appearance: none;
     -webkit-appearance: none;
   }
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 3vw;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 2.5vw;
+    width: ${(props) =>
+      props.$type === 'text'
+        ? '25vw'
+        : props.$type === 'number'
+        ? '5vw'
+        : '50px'};
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    font-size: 2vw;
+    width: ${(props) =>
+      props.$type === 'text'
+        ? '30vw'
+        : props.$type === 'number'
+        ? '5vw'
+        : '100px'};
+  }
 `;
 
 const SelectWrapper = styled.div`
@@ -362,11 +453,20 @@ const SelectButton = styled.button`
   align-items: center;
   color: ${(props) => props.theme.themeColor.blue};
   cursor: pointer;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 3vw;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 3vw;
+  }
 `;
 
 const SelectLabel = styled.p`
   white-space: nowrap;
-  padding-right: 10px;
+  width: 60px;
+  @media ${({ theme }) => theme.device.laptop} {
+    width: 90px;
+  }
 `;
 
 const SelectArrow = styled.img`
@@ -402,6 +502,9 @@ const SelectList = styled.button<{ $select: boolean }>`
   &:hover {
     background-color: ${(props) => props.theme.themeColor.blue};
   }
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 4vw;
+  }
 `;
 
 const SubmitButton = styled.button`
@@ -417,6 +520,9 @@ const SubmitButton = styled.button`
     transform: scale(120%);
     color: ${(props) => props.theme.themeColor.blue};
   }
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 3vw;
+  }
 `;
 
 const PreviewWrapper = styled.fieldset`
@@ -428,10 +534,24 @@ const PreviewWrapper = styled.fieldset`
   border: 2px solid ${(props) => props.theme.themeColor.blue};
   border-radius: 5px;
   overflow: hidden;
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 80%;
+    height: 40%;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    width: 100%;
+  }
 `;
 
 const Span = styled.span`
+  white-space: nowrap;
   font-size: 3vw;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 10vw;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 5vw;
+  }
 `;
 
 const Priview = styled.span<{
@@ -442,6 +562,7 @@ const Priview = styled.span<{
   $deg: number;
   $skill: string;
 }>`
+  text-align: center;
   position: absolute;
   top: ${(props) => (props.$top ? `${props.$top}%` : '50%')};
   left: ${(props) => (props.$left ? `${props.$left}%` : '50%')};
@@ -457,6 +578,13 @@ const Priview = styled.span<{
   height: ${(props) => (props.$skill ? 'auto' : '20px')};
   font-size: 1vw;
   padding: 1% 4%;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 4vw;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 2vw;
+    padding: 1% 6%;
+  }
 `;
 
 export default AddSkillModal;
