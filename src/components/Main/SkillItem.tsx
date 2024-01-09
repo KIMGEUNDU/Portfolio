@@ -47,11 +47,14 @@ const Item = styled(motion.span)<{
       ? props.theme.themeColor.pink
       : props.$bg === 'yellow'
       ? props.theme.themeColor.yellow
-      : props.theme.themeColor.brown};
+      : props.$bg === 'brown'
+      ? props.theme.themeColor.brown
+      : props.$bg};
   color: ${(props) => (props.$color === 'black' ? 'black' : 'white')};
   border-radius: 100px;
   font-size: 3vw;
   padding: 1% 2%;
+  cursor: pointer;
 `;
 
 export default SkillItem;
