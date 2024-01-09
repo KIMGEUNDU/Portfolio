@@ -1,3 +1,4 @@
+import { sb } from '@/api/supabase';
 import bullet from '@/assets/bullet.png';
 import bulletActive from '@/assets/bulletActive.png';
 import AddButton from '@/components/Main/AddButton';
@@ -5,7 +6,7 @@ import ProjectItem from '@/components/Main/ProjectItem';
 import ProjectModal from '@/components/Main/ProjectModal';
 import Title from '@/components/Main/Title';
 import { useModal } from '@/store/useModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GrNext, GrPrevious } from 'react-icons/gr';
 import styled from 'styled-components';
 import 'swiper/css';
@@ -15,8 +16,31 @@ import { A11y, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 function Project() {
-  const { open } = useModal();
+  const { open, selectId } = useModal();
   const [, setAdd] = useState(false);
+  const [project, setProject] = useState<Project[] | null>(null);
+  const [detailProject, setDetailProject] = useState<Project | null>(null);
+
+  useEffect(() => {
+    const select = project?.filter((v) => v.id === selectId);
+
+    if (select) {
+      setDetailProject(select[0]);
+    }
+  }, [selectId]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await sb.from('project').select('*');
+      const sortData = data?.sort((a, b) => b.id - a.id);
+
+      if (sortData) {
+        setProject(sortData);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <Wrapper
@@ -57,16 +81,19 @@ function Project() {
             },
           }}
         >
-          {Array.from({ length: 3 })
-            .fill('')
-            .map((_, i) => {
+          {project &&
+            project.map((v, i) => {
               return (
-                <div key={i}>
+                <div key={i} style={{ position: 'relative' }}>
                   <SwiperItem>
-                    <ProjectItem type="web" />
-                  </SwiperItem>
-                  <SwiperItem>
-                    <ProjectItem type="mobile" />
+                    <ProjectItem
+                      id={v.id}
+                      name={v.name}
+                      type={v.type}
+                      skill={v.skill}
+                      summary={v.summary}
+                      image={v.image}
+                    />
                   </SwiperItem>
                 </div>
               );
@@ -84,7 +111,20 @@ function Project() {
           Add Project
         </AddButton>
       </SwiperWrapper>
-      {open && <ProjectModal type="mobile" />}
+      {detailProject && open && (
+        <ProjectModal
+          deploy={detailProject.deploy}
+          github={detailProject.github}
+          figma={detailProject.figma}
+          ppt={detailProject.ppt}
+          thumnail={detailProject.thumnail}
+          name={detailProject.name}
+          type={detailProject.type}
+          skill={detailProject.skill}
+          image={detailProject.image}
+          explan={detailProject.explan}
+        />
+      )}
     </Wrapper>
   );
 }
@@ -102,7 +142,7 @@ const SwiperWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0 10%;
-  height: 60%;
+  height: 65%;
   position: relative;
   @media ${({ theme }) => theme.device.mobile} {
     height: 70%;
