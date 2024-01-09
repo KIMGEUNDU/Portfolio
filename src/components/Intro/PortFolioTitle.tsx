@@ -37,6 +37,9 @@ const Wrapper = styled.div`
   @media ${({ theme }) => theme.device.tablet} {
     font-size: 2.5rem;
   }
+  @media ${({ theme }) => theme.device.laptop} {
+    font-size: 4rem;
+  }
 `;
 
 const LetterItem = styled.span`

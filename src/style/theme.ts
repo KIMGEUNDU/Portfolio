@@ -5,7 +5,6 @@ const themeColor = {
   blue: "#86BEE7",
   green: "#20C997",
   red: "#FF4A4A",
-  gray: "#F6F6F6",
   vsPurple: "#8348FF",
   vsPink: "#FF44BF",
   vsGreen: "#84E97B",

@@ -9,6 +9,8 @@ import { IoIosSend } from 'react-icons/io';
 import { IoBookmarkSharp } from 'react-icons/io5';
 import { RiMore2Line } from 'react-icons/ri';
 import styled, { css, keyframes } from 'styled-components';
+import { FaGithubAlt } from 'react-icons/fa';
+import { SiVelog } from 'react-icons/si';
 
 function Contact() {
   const [like, setLike] = useState(809);
@@ -80,8 +82,9 @@ function Contact() {
               $margin={15}
             >
               <LinkButtonImg
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Font_Awesome_5_brands_github.svg/1200px-Font_Awesome_5_brands_github.svg.png"
-                alt="Github 이동"
+                as={FaGithubAlt}
+                alt="Github 보러가기"
+                $color="black"
               />
             </Link>
             <Link
@@ -90,8 +93,9 @@ function Contact() {
               rel="noreferrer noopener"
             >
               <LinkButtonImg
-                src="https://pbs.twimg.com/profile_images/1228368893321736193/Ov0og7E8_400x400.jpg"
-                alt="Velog 이동"
+                as={SiVelog}
+                alt="Velog 보러가기"
+                $color="#20C997"
               />
             </Link>
           </ExceptMark>
@@ -278,10 +282,11 @@ const Link = styled.a<{ $margin?: number }>`
   margin: ${(props) => (props.$margin ? `0 ${props.$margin}px` : 0)};
 `;
 
-const LinkButtonImg = styled.img`
+const LinkButtonImg = styled.img<{ $color: string }>`
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  color: ${(props) => props.$color};
 `;
 
 const LikeCount = styled.p`

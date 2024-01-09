@@ -6,6 +6,7 @@ function NavBar() {
   const { view } = useContactView();
   const [bg, setBg] = useState('yellow');
   const [currentNavItem, setCurrentNavItem] = useState('IntroMenu');
+  const [remain, setRemain] = useState('#F8BAA0');
 
   const handleNavItemClick = (id: string) => {
     setCurrentNavItem(id);
@@ -23,34 +24,47 @@ function NavBar() {
             switch (v.target.id) {
               case 'IntroMenu':
                 setBg('yellow');
+                setRemain('#F8BAA0');
                 break;
 
               case 'Promise':
                 setBg('pink');
+                setRemain('#FFFFFF');
                 break;
 
               case 'AboutMe':
                 setBg('yellow');
+                setRemain('#F8BAA0');
                 break;
 
               case 'IThink':
                 setBg('white');
+                setRemain('#F8BAA0');
                 break;
 
               case 'IThinkDeveloper':
                 setBg('brown');
+                setRemain('#F8BAA0');
                 break;
 
               case 'IThinkWorry':
                 setBg('yellow');
+                setRemain('#F8BAA0');
                 break;
 
               case 'Skill':
                 setBg('white');
+                setRemain('#F8BAA0');
                 break;
 
               case 'Contact':
                 setBg('pink');
+                setRemain('#FFFFFF');
+                break;
+
+              case 'Project':
+                setBg('brown');
+                setRemain('#F8BAA0');
                 break;
             }
           }
@@ -66,6 +80,7 @@ function NavBar() {
     const IThinkDeveloperPage = document.getElementById('IThinkDeveloper');
     const IThinkWorryPage = document.getElementById('IThinkWorry');
     const SkillPage = document.getElementById('Skill');
+    const ProjectPage = document.getElementById('Project');
     const ContactPage = document.getElementById('Contact');
 
     if (
@@ -76,7 +91,8 @@ function NavBar() {
       IThinkDeveloperPage &&
       IThinkWorryPage &&
       SkillPage &&
-      ContactPage
+      ContactPage &&
+      ProjectPage
     ) {
       observer.observe(IntroPage);
       observer.observe(PromisePage);
@@ -85,6 +101,7 @@ function NavBar() {
       observer.observe(IThinkDeveloperPage);
       observer.observe(IThinkWorryPage);
       observer.observe(SkillPage);
+      observer.observe(ProjectPage);
       observer.observe(ContactPage);
     }
   }, []);
@@ -94,7 +111,8 @@ function NavBar() {
       <NavItem
         id="navItem"
         $current={currentNavItem === 'IntroMenu'}
-        $bg={bg}
+        $currentbg={bg}
+        $bg={remain}
         onClick={() => handleNavItemClick('IntroMenu')}
       >
         <NavItemTitle $current={currentNavItem === 'IntroMenu'}>
@@ -104,7 +122,8 @@ function NavBar() {
       <NavItem
         id="navItem"
         $current={currentNavItem === 'Promise'}
-        $bg={bg}
+        $currentbg={bg}
+        $bg={remain}
         onClick={() => handleNavItemClick('Promise')}
       >
         <NavItemTitle $current={currentNavItem === 'Promise'}>
@@ -114,7 +133,8 @@ function NavBar() {
       <NavItem
         id="navItem"
         $current={currentNavItem === 'AboutMe'}
-        $bg={bg}
+        $currentbg={bg}
+        $bg={remain}
         onClick={() => handleNavItemClick('AboutMe')}
       >
         <NavItemTitle $current={currentNavItem === 'AboutMe'}>
@@ -128,7 +148,8 @@ function NavBar() {
           currentNavItem === 'IThinkDeveloper' ||
           currentNavItem === 'IThinkWorry'
         }
-        $bg={bg}
+        $currentbg={bg}
+        $bg={remain}
         onClick={() => handleNavItemClick('IThink')}
       >
         <NavItemTitle
@@ -144,7 +165,8 @@ function NavBar() {
       <NavItem
         id="navItem"
         $current={currentNavItem === 'Skill'}
-        $bg={bg}
+        $currentbg={bg}
+        $bg={remain}
         onClick={() => handleNavItemClick('Skill')}
       >
         <NavItemTitle $current={currentNavItem === 'Skill'}>Skill</NavItemTitle>
@@ -152,7 +174,8 @@ function NavBar() {
       <NavItem
         id="navItem"
         $current={currentNavItem === 'Project'}
-        $bg={bg}
+        $currentbg={bg}
+        $bg={remain}
         onClick={() => handleNavItemClick('Project')}
       >
         <NavItemTitle $current={currentNavItem === 'Project'}>
@@ -162,7 +185,8 @@ function NavBar() {
       <NavItem
         id="navItem"
         $current={currentNavItem === 'Contact'}
-        $bg={bg}
+        $currentbg={bg}
+        $bg={remain}
         onClick={() => handleNavItemClick('Contact')}
       >
         <NavItemTitle $current={currentNavItem === 'Contact'}>
@@ -200,7 +224,11 @@ const Wrapper = styled.nav<{ $appear: boolean }>`
   }
 `;
 
-const NavItem = styled.button<{ $current: boolean; $bg: string }>`
+const NavItem = styled.button<{
+  $current: boolean;
+  $currentbg: string;
+  $bg: string;
+}>`
   position: relative;
   width: 20px;
   height: 20px;
@@ -210,15 +238,15 @@ const NavItem = styled.button<{ $current: boolean; $bg: string }>`
   transition: transform 0.5s;
   transform: ${(props) => (props.$current ? 'scale(150%)' : 'scale(100%)')};
   background-color: ${(props) =>
-    props.$current && props.$bg === 'yellow'
+    props.$current && props.$currentbg === 'yellow'
       ? props.theme.themeColor.brown
-      : props.$current && props.$bg === 'pink'
+      : props.$current && props.$currentbg === 'pink'
       ? props.theme.themeColor.yellow
-      : props.$current && props.$bg === 'white'
-      ? props.theme.themeColor.pink
-      : props.$current && props.$bg === 'brown'
+      : props.$current && props.$currentbg === 'white'
       ? props.theme.themeColor.yellow
-      : props.theme.themeColor.gray};
+      : props.$current && props.$currentbg === 'brown'
+      ? props.theme.themeColor.yellow
+      : props.$bg};
   @media ${({ theme }) => theme.device.mobile} {
     width: 15px;
     height: 15px;

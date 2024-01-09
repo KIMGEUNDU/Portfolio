@@ -3,10 +3,11 @@ import styled from 'styled-components';
 
 interface Title {
   id: string;
+  color?: boolean;
   children: string;
 }
 
-function Title({ id, children }: Title) {
+function Title({ id, color, children }: Title) {
   const [appearTitle, setAppearTitle] = useState(false);
 
   useEffect(() => {
@@ -28,16 +29,17 @@ function Title({ id, children }: Title) {
   }, []);
 
   return (
-    <Heading id={id} $appear={appearTitle}>
+    <Heading id={id} $appear={appearTitle} $color={color}>
       {children}
     </Heading>
   );
 }
 
-const Heading = styled.h2<{ $appear: boolean }>`
+const Heading = styled.h2<{ $appear: boolean; $color?: boolean }>`
   font-size: 9vw;
   font-weight: 900;
   padding: 30px 0;
+  color: ${(props) => (props.$color ? 'white' : 'black')};
   transform: ${(props) =>
     props.$appear ? 'translateX(0)' : 'translateX(-100%)'};
   transition: transform 1s;

@@ -7,9 +7,11 @@
   font-weight: normal;
   font-style: normal;
 }
+
 :root {
-  —ti-cursor-font-size: 13px;
+  --ti-cursor-font-size: 20vw;
 }
+
 * {
   font-family: 'Wanted Sans Variable', sans-serif;
   font-size: 22px;

@@ -1,7 +1,28 @@
+import { sb } from '@/api/supabase';
+import AddButton from '@/components/Main/AddButton';
+import AddSkillModal from '@/components/Main/AddSkillModal';
 import SkillItem from '@/components/Main/SkillItem';
+import { useData } from '@/store/useData';
+import { useModal } from '@/store/useModal';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
 function Skill() {
+  const { skillModal, setSkillModal } = useModal();
+  const { skill, setSkill } = useData();
+
+  useEffect(() => {
+    const getSkill = async () => {
+      const { data } = await sb.from('skill').select('*');
+
+      if (data) {
+        setSkill(data);
+      }
+    };
+
+    getSkill();
+  }, [skill]);
+
   return (
     <Wrapper
       id="Skill"
@@ -11,51 +32,31 @@ function Skill() {
       }}
     >
       <MyWill>I Grow Up</MyWill>
-      {/* Yellow */}
-      <SkillItem top={27} left={26} bg="yellow" color="black" deg={-15}>
-        Zustand
-      </SkillItem>
-      <SkillItem top={35} left={60} bg="yellow" color="black" deg={20}>
-        Recoil
-      </SkillItem>
-      <SkillItem top={60} left={56} bg="yellow" color="black" deg={-10}>
-        Pocketbase
-      </SkillItem>
-      <SkillItem top={60} left={25} bg="yellow" color="black" deg={-15}>
-        Figma
-      </SkillItem>
-      <SkillItem top={40} left={8} bg="yellow" color="black" deg={-20}>
-        Notion
-      </SkillItem>
-      {/* Brown */}
-      <SkillItem top={50} left={60} bg="brown" color="white" deg={10}>
-        Styled Component
-      </SkillItem>
-      <SkillItem top={44} left={25} bg="brown" color="white" deg={-20}>
-        Sass
-      </SkillItem>
-      <SkillItem top={30} left={40} bg="brown" color="white" deg={-10}>
-        TailwindCSS
-      </SkillItem>
-      <SkillItem top={65} left={42} bg="brown" color="white" deg={10}>
-        Emotion
-      </SkillItem>
-      {/* Pink */}
-      <SkillItem top={30} left={15} bg="pink" color="black" deg={30}>
-        HTML
-      </SkillItem>
-      <SkillItem top={65} left={75} bg="pink" color="black" deg={-20}>
-        CSS
-      </SkillItem>
-      <SkillItem top={50} left={45} bg="pink" color="black" deg={-20}>
-        React
-      </SkillItem>
-      <SkillItem top={55} left={5} bg="pink" color="black" deg={10}>
-        JavaScript
-      </SkillItem>
-      <SkillItem top={30} left={70} bg="pink" color="black" deg={-20}>
-        TypeScript
-      </SkillItem>
+      {skill &&
+        skill.map((v, i) => {
+          return (
+            <SkillItem
+              key={i}
+              top={v.top}
+              left={v.left}
+              deg={v.deg}
+              bg={v.bg}
+              color={v.color}
+            >
+              {v.skill}
+            </SkillItem>
+          );
+        })}
+
+      <AddButton
+        top={5}
+        right={5}
+        color="#F8BAA0"
+        onClick={() => setSkillModal(true)}
+      >
+        Add Skill
+      </AddButton>
+      {skillModal && <AddSkillModal />}
     </Wrapper>
   );
 }
