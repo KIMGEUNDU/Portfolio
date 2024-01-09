@@ -3,17 +3,21 @@ import { create } from 'zustand';
 interface Modal {
   open: boolean;
   setOpen: (view: boolean) => void;
-  skill: boolean;
-  setSkill: (skill: boolean) => void;
-  project: boolean;
-  setProject: (project: boolean) => void;
+  skillModal: boolean;
+  setSkillModal: (skillModal: boolean) => void;
+  projectModal: boolean;
+  setProjectModal: (projectModal: boolean) => void;
+  selectId: number;
+  setSelectId: (selectId: number) => void;
 }
 
 export const useModal = create<Modal>((set) => ({
   open: false,
   setOpen: (open: boolean) => set({ open }),
-  skill: false,
-  setSkill: (skill: boolean) => set({ skill }),
-  project: false,
-  setProject: (project: boolean) => set({ project }),
+  skillModal: false,
+  setSkillModal: (skillModal: boolean) => set({ skillModal }),
+  projectModal: false,
+  setProjectModal: (projectModal: boolean) => set({ projectModal }),
+  selectId: 0,
+  setSelectId: (selectId: number) => set({ selectId }),
 }));
