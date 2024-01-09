@@ -38,14 +38,17 @@ const TagItem = styled.span<{ $color: string; $project?: boolean }>`
   border-radius: 20px;
   background-image: ${(props) => props.$color};
   white-space: nowrap;
+  margin: ${(props) => (props.$project ? `1% 0` : '0')};
   @media ${({ theme }) => theme.device.mobile} {
-    font-size: ${(props) => (props.$project ? `0.5vw` : '3vw')};
+    padding: ${(props) => (props.$project ? `0.5% 2%` : '1% 2%')};
+    font-size: ${(props) => (props.$project ? `3vw` : '3vw')};
+    margin: ${(props) => (props.$project ? `2% 0` : '0')};
   }
   @media ${({ theme }) => theme.device.tablet} {
-    font-size: ${(props) => (props.$project ? `0.5vw` : '2.5vw')};
+    font-size: ${(props) => (props.$project ? `2vw` : '2.5vw')};
   }
   @media ${({ theme }) => theme.device.laptop} {
-    font-size: ${(props) => (props.$project ? `0.5vw` : '1.5vw')};
+    font-size: ${(props) => (props.$project ? `1.2vw` : '1.5vw')};
   }
 `;
 
