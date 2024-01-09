@@ -4,51 +4,56 @@ import mac from '@/assets/mac.png';
 import iphone from '@/assets/iphone.png';
 import { useModal } from '@/store/useModal';
 
-function ProjectItem({ type }: { type: string }) {
-  const value = ['React', 'Javascript', 'Typescript'];
-  const { setOpen } = useModal();
+function ProjectItem({
+  id,
+  name,
+  type,
+  skill,
+  summary,
+  image,
+}: Pick<Project, 'id' | 'name' | 'type' | 'skill' | 'summary' | 'image'>) {
+  const { setOpen, setSelectId } = useModal();
 
   return (
     <Wrapper>
-      <ThumnailWrapper onClick={() => setOpen(true)}>
+      <ThumnailWrapper
+        onClick={() => {
+          setOpen(true), setSelectId(id);
+        }}
+      >
         {type === 'web' && (
           <>
             <Mac src={mac} alt="Designed by Freepik" />
-            <ThumnailWeb
-              src="https://github.com/KIMGEUNDU/Portfolio/assets/126174401/4e61232b-a4d8-430f-80ca-568277e84878"
-              alt="프로젝트 이미지"
-            />
+            <ThumnailWeb src={image} alt={`${name} 썸네일이미지`} />
           </>
         )}
         {type === 'mobile' && (
           <>
             <Mobile src={iphone} alt="Designed by Freepik" />
-            <ThumnailMobile
-              src="https://user-images.githubusercontent.com/86372549/270151749-17d2d9a1-3b09-4981-a8ff-f5a96888f581.gif"
-              alt="프로젝트 이미지"
-            />
+            <ThumnailMobile src={image} alt={`${name} 썸네일이미지`} />
           </>
         )}
+        {!image && <Noimage>진행중</Noimage>}
       </ThumnailWrapper>
-      <figcaption>
-        <Name>프로젝트명</Name>
-        <Explanation>
-          프로젝트 요약입니다.프로젝트 요약입니다.프로젝트 요약입니다.프로젝트
-          요약입니다.프로젝트 요약입니다.
-        </Explanation>
+      <Figcaption>
+        <Name>{name}</Name>
+        <Summary>{summary}</Summary>
         <TagWrapper>
-          <Tag value={value} />
+          <Tag value={skill.slice(0, 3)} />
         </TagWrapper>
-      </figcaption>
+      </Figcaption>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.figure`
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
   overflow: hidden;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ThumnailWrapper = styled.div`
@@ -57,6 +62,20 @@ const ThumnailWrapper = styled.div`
   height: 60%;
   display: flex;
   justify-content: center;
+`;
+
+const Noimage = styled.p`
+  font-family: 'Cafe24Shiningstar';
+  font-size: 4vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 7vw;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 7vw;
+  }
 `;
 
 const Mac = styled.img`
@@ -96,8 +115,8 @@ const ThumnailMobile = styled.img`
   width: 33%;
   height: 100%;
   border-radius: 20px;
-  padding-top: 10px;
-  padding-bottom: 2px;
+  padding-top: 38px;
+  padding-bottom: 30px;
   @media ${({ theme }) => theme.device.mobile} {
     width: 47%;
   }
@@ -106,9 +125,18 @@ const ThumnailMobile = styled.img`
   }
 `;
 
+const Figcaption = styled.figcaption`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 39%;
+`;
+
 const Name = styled.p`
+  font-family: 'Cafe24Shiningstar';
   font-size: 1.8vw;
-  padding: 20px 2%;
+  padding: 10px 2%;
   @media ${({ theme }) => theme.device.mobile} {
     font-size: 7vw;
     padding: 10px 2%;
@@ -123,7 +151,9 @@ const Name = styled.p`
   }
 `;
 
-const Explanation = styled.p`
+const Summary = styled.pre`
+  flex-grow: 1;
+  white-space: break-spaces;
   padding: 0 2%;
   font-size: 1vw;
   @media ${({ theme }) => theme.device.mobile} {
@@ -138,7 +168,7 @@ const Explanation = styled.p`
 `;
 
 const TagWrapper = styled.p`
-  padding: 5% 2%;
+  padding: 0 2%;
   display: flex;
   gap: 2%;
 `;

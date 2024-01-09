@@ -11,26 +11,42 @@ import mac from '@/assets/mac.png';
 import styled from 'styled-components';
 import Tag from './Tag';
 
-function ProjectModal({ type }: { type: string }) {
-  const value = ['React', 'Javascript', 'Typescript', 'Zustand', 'PocketBase'];
+function ProjectModal({
+  deploy,
+  github,
+  figma,
+  ppt,
+  thumnail,
+  name,
+  type,
+  skill,
+  image,
+  explan,
+}: Pick<
+  Project,
+  | 'deploy'
+  | 'github'
+  | 'figma'
+  | 'ppt'
+  | 'thumnail'
+  | 'name'
+  | 'type'
+  | 'skill'
+  | 'image'
+  | 'explan'
+>) {
   const { setOpen } = useModal();
 
   return (
     <Wrapper>
       <Project>
         <ControlWrapper>
-          <ControlButton
-            onClick={() =>
-              window.open('https://github.com/likelion-plus/counting-stars-13')
-            }
-          >
-            <ControlImg as={SiNetlify} alt="배포사이트 보러가기" />
-          </ControlButton>
-          <ControlButton
-            onClick={() =>
-              window.open('https://github.com/likelion-plus/counting-stars-13')
-            }
-          >
+          {deploy && (
+            <ControlButton onClick={() => window.open(`${deploy}`)}>
+              <ControlImg as={SiNetlify} alt="배포사이트 보러가기" />
+            </ControlButton>
+          )}
+          <ControlButton onClick={() => window.open(`${github}`)}>
             <ControlImg as={FaGithubAlt} alt="Github 보러가기" />
           </ControlButton>
           <ControlButton onClick={() => setOpen(false)}>
@@ -39,15 +55,13 @@ function ProjectModal({ type }: { type: string }) {
         </ControlWrapper>
         <ProjectContents>
           <ThumnailWrapper>
-            <Thumnail
-              src="https://i.pinimg.com/originals/8e/1a/40/8e1a40df89eedc9219f6da0506701c97.gif"
-              alt="프로젝트 이미지"
-            />
+            {thumnail && <Thumnail src={thumnail} alt="프로젝트 이미지" />}
+            {!thumnail && <NoThumnail>진행중인 프로젝트입니다.</NoThumnail>}
             <Icon>🏅</Icon>
           </ThumnailWrapper>
-          <Title>Project Title</Title>
+          <Title>{name}</Title>
           <TagWrapper>
-            <Tag value={value} project={true} />
+            <Tag value={skill} project={true} />
           </TagWrapper>
           <ToolWrapper>
             {type === 'web' && (
@@ -72,53 +86,72 @@ function ProjectModal({ type }: { type: string }) {
                 &nbsp; 반응형
               </Base>
             )}
-            <ToolLink href="#" target="_blank" rel="noreferrer noopener">
-              <ToolImg as={SiNetlify} alt="사이트 보러가기" $color="#5CAAB9" />
-              Deploy
-            </ToolLink>
-            <ToolLink href="#" target="_blank" rel="noreferrer noopener">
-              <ToolImg as={FaGithubAlt} alt="Github 보러가기" $color="black" />
-              Github
-            </ToolLink>
-            <ToolLink href="#" target="_blank" rel="noreferrer noopener">
-              <ToolImg as={IoLogoFigma} alt="Figma 보러가기" $color="#A259FF" />
-              Figma
-            </ToolLink>
-            <ToolLink href="#" target="_blank" rel="noreferrer noopener">
-              <ToolImg
-                as={TbFileTypePpt}
-                alt="최종발표 PPT 보러가기"
-                $color="#C35033"
-              />
-              PPT
-            </ToolLink>
+            {deploy && (
+              <ToolLink href={deploy} target="_blank" rel="noreferrer noopener">
+                <ToolImg
+                  as={SiNetlify}
+                  alt="배포사이트 보러가기"
+                  $color="#5CAAB9"
+                />
+                <ToolName>Deploy</ToolName>
+              </ToolLink>
+            )}
+            {github && (
+              <ToolLink href={github} target="_blank" rel="noreferrer noopener">
+                <ToolImg
+                  as={FaGithubAlt}
+                  alt="Github 보러가기"
+                  $color="black"
+                />
+                <ToolName>Github</ToolName>
+              </ToolLink>
+            )}
+            {figma && (
+              <ToolLink href={figma} target="_blank" rel="noreferrer noopener">
+                <ToolImg
+                  as={IoLogoFigma}
+                  alt="Figma 보러가기"
+                  $color="#A259FF"
+                />
+                <ToolName>Figma</ToolName>
+              </ToolLink>
+            )}
+            {ppt && (
+              <ToolLink href={ppt} target="_blank" rel="noreferrer noopener">
+                <ToolImg
+                  as={TbFileTypePpt}
+                  alt="PPT 보러가기"
+                  $color="#C35033"
+                />
+                <ToolName>PPT</ToolName>
+              </ToolLink>
+            )}
           </ToolWrapper>
           <ContentWrapper>
             <PreviewWrapper $type={type}>
-              {type === 'web' && (
+              {image && type === 'web' && (
                 <>
-                  <PreviewBase src={mac} alt="Designed by Freepik" />
-                  <PreviewImg
-                    src="https://github.com/KIMGEUNDU/Portfolio/assets/126174401/4e61232b-a4d8-430f-80ca-568277e84878"
-                    alt="미리보기"
+                  <PreviewBase
+                    src={mac}
+                    alt="Designed by Freepik"
                     $type={type}
                   />
+                  <PreviewImg src={image} alt="미리보기" $type={type} />
                 </>
               )}
-              {type === 'mobile' && (
+              {image && type === 'mobile' && (
                 <>
-                  <PreviewBase src={iphone} alt="Designed by Freepik" />
-                  <PreviewImg
-                    src="https://user-images.githubusercontent.com/126174401/270152375-b51a0401-d6fe-42b3-a395-81af9632b490.gif"
-                    alt="미리보기"
+                  <PreviewBase
+                    src={iphone}
+                    alt="Designed by Freepik"
                     $type={type}
                   />
+                  <PreviewImg src={image} alt="미리보기" $type={type} />
                 </>
               )}
+              {!image && <NoImage>진행중</NoImage>}
             </PreviewWrapper>
-            <Impression $type={type}>
-              느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점느낀점
-            </Impression>
+            <Explan $type={type}>{explan}</Explan>
           </ContentWrapper>
         </ProjectContents>
       </Project>
@@ -136,7 +169,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3;
+  z-index: 100;
   overflow: hidden;
 `;
 
@@ -147,6 +180,12 @@ const Project = styled.div`
   height: 80%;
   padding-bottom: 30px;
   overflow: hidden;
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 80%;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    width: 80%;
+  }
 `;
 
 const ControlWrapper = styled.div`
@@ -155,6 +194,9 @@ const ControlWrapper = styled.div`
   height: 40px;
   padding: 0 2%;
   text-align: right;
+  @media ${({ theme }) => theme.device.mobile} {
+    height: 30px;
+  }
 `;
 
 const ControlButton = styled.button`
@@ -165,6 +207,9 @@ const ControlButton = styled.button`
   padding: 0;
   cursor: pointer;
   margin: 0 7px;
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 25px;
+  }
 `;
 
 const ControlImg = styled.img`
@@ -194,6 +239,20 @@ const ThumnailWrapper = styled.div`
   position: relative;
   margin-bottom: 65px;
   height: 45%;
+  @media ${({ theme }) => theme.device.mobile} {
+    height: 30%;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    height: 30%;
+  }
+`;
+
+const NoThumnail = styled.p`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Thumnail = styled.img`
@@ -208,24 +267,64 @@ const Icon = styled.span`
   transform: translateY(50%);
   font-size: 5vw;
   padding: 0 5%;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 12vw;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 10vw;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    font-size: 7vw;
+  }
 `;
 
 const Title = styled.p`
   font-size: 2.5vw;
   font-weight: 600;
   padding: 0 5%;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 8vw;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 6vw;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    font-size: 3.5vw;
+  }
 `;
 
 const TagWrapper = styled.p`
   display: flex;
+  flex-wrap: wrap;
   gap: 2%;
   padding: 2% 4%;
+  @media ${({ theme }) => theme.device.mobile} {
+    flex-wrap: wrap;
+  }
 `;
 
 const ToolWrapper = styled.div`
   padding: 1% 4%;
   display: flex;
   gap: 2%;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 3.5vw;
+    flex-wrap: wrap;
+    gap: 5%;
+    padding: 3% 4%;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 2.5vw;
+    flex-wrap: wrap;
+    gap: 3%;
+    padding: 3% 4%;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    font-size: 1.5vw;
+    flex-wrap: wrap;
+    gap: 3%;
+    padding: 3% 4%;
+  }
 `;
 
 const ToolLink = styled.a`
@@ -251,24 +350,74 @@ const ToolImg = styled.img<{ $color?: string }>`
   color: ${(props) => props.$color};
 `;
 
+const ToolName = styled.span`
+  @media ${({ theme }) => theme.device.mobile} {
+    display: none;
+  }
+`;
+
 const ContentWrapper = styled.div`
   padding: 3% 5%;
   display: flex;
   gap: 20px;
   justify-content: space-between;
+  @media ${({ theme }) => theme.device.mobile} {
+    flex-direction: column;
+    font-size: 4vw;
+    align-items: center;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    flex-direction: column;
+    font-size: 2.5vw;
+    align-items: center;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    font-size: 1.8vw;
+  }
 `;
 
 const PreviewWrapper = styled.div<{ $type: string }>`
   box-sizing: border-box;
   position: relative;
   width: ${(props) => (props.$type === 'mobile' ? '30%' : '50%')};
-  height: ${(props) => (props.$type === 'mobile' ? 'auto' : '350px')};
-  padding: ${(props) => (props.$type === 'mobile' ? '6.1% 1%' : '1.1% 1%')};
+  height: ${(props) => (props.$type === 'mobile' ? '600px' : '350px')};
+  padding: ${(props) => (props.$type === 'mobile' ? '0% 1%' : '1.1% 1%')};
+  margin: ${(props) => (props.$type === 'mobile' ? '60px 0' : 0)};
+  @media ${({ theme }) => theme.device.mobile} {
+    width: ${(props) => (props.$type === 'mobile' ? '85%' : '95%')};
+    padding: ${(props) =>
+      props.$type === 'mobile' ? '23% 3.5% 25% 3.5%' : '2.5% 2%'};
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    width: ${(props) => (props.$type === 'mobile' ? '65%' : '100%')};
+    height: ${(props) => (props.$type === 'mobile' ? 'auto' : '50vh')};
+    padding: ${(props) =>
+      props.$type === 'mobile' ? '18% 3.5% 20% 2.8%' : '2.5% 2%'};
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    width: ${(props) => (props.$type === 'mobile' ? '65%' : '100%')};
+    padding: ${(props) =>
+      props.$type === 'mobile' ? '13% 2% 14% 2%' : '1.7% 1.5%'};
+  }
 `;
 
-const PreviewBase = styled.img`
+const NoImage = styled.p`
+  font-family: 'Cafe24Shiningstar';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: ${(props) => props.theme.themeColor.brown};
+  font-size: 3vw;
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 7vw;
+  }
+`;
+
+const PreviewBase = styled.img<{ $type: string }>`
   position: absolute;
-  top: 0;
+  top: ${(props) => (props.$type === 'mobile' ? '-65px' : '0')};
   left: 0;
   width: 100%;
   height: 100%;
@@ -276,11 +425,19 @@ const PreviewBase = styled.img`
 
 const PreviewImg = styled.img<{ $type: string }>`
   width: 100%;
-  height: ${(props) => (props.$type === 'mobile' ? '100%' : '68%')};
+  height: ${(props) => (props.$type === 'mobile' ? '78%' : '68%')};
 `;
 
-const Impression = styled.p<{ $type: string }>`
+const Explan = styled.p<{ $type: string }>`
   width: ${(props) => (props.$type === 'mobile' ? '70%' : '50%')};
+  @media ${({ theme }) => theme.device.mobile} {
+    width: ${(props) => (props.$type === 'mobile' ? '85%' : '90%')};
+    padding-bottom: 30px;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    width: ${(props) => (props.$type === 'mobile' ? '85%' : '100%')};
+    padding-bottom: 30px;
+  }
 `;
 
 export default ProjectModal;
