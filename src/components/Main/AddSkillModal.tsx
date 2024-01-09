@@ -1,9 +1,11 @@
+import { sb } from '@/api/supabase';
+import { useData } from '@/store/useData';
 import { useModal } from '@/store/useModal';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { RiArrowGoBackFill } from 'react-icons/ri';
-import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
 import styled from 'styled-components';
+import SelectInput from './SelectInput,';
 
 function AddSkillModal() {
   const Skills = [
@@ -22,23 +24,31 @@ function AddSkillModal() {
     'Pocketbase',
     'Recoil',
   ];
-  const { setSkill } = useModal();
-  const [select, setSelect] = useState(false);
+  const { setSkillModal } = useModal();
+  const { skill } = useData();
+  const [selectColor, setSelectColor] = useState(false);
+  const [selectBg, setSelectBg] = useState(false);
   const [deg, setDeg] = useState(0);
   const [top, setTop] = useState(0);
   const [left, setLeft] = useState(0);
-  const [bg, setBg] = useState('');
+  const [bg, setBg] = useState('선택');
   const [color, setColor] = useState('선택');
   const [skillName, setSkillName] = useState('');
 
-  const selectColor = (color: string) => {
+  const selectedColor = (color: string) => {
     setColor(color);
-    setSelect(false);
+    setSelectColor(false);
+  };
+
+  const selectedBg = (bg: string) => {
+    setBg(bg);
+    setSelectBg(false);
   };
 
   const closeModal = () => {
-    setSkill(false);
-    setSelect(false);
+    setSkillModal(false);
+    setSelectColor(false);
+    setSelectBg(false);
     setDeg(0);
     setTop(0);
     setLeft(0);
@@ -47,9 +57,9 @@ function AddSkillModal() {
     setSkillName('');
   };
 
-  const submitSkill = (e: React.FormEvent) => {
+  const submitSkill = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSelect(false);
+    setSelectColor(false);
 
     Skills.forEach((v) => {
       if (v.toLowerCase() === skillName.toLowerCase()) {
@@ -70,6 +80,42 @@ function AddSkillModal() {
     if (bg === '') {
       toast('배경색을 정해주세요', {
         icon: '✅',
+        duration: 1000,
+      });
+    }
+
+    const addSkill = {
+      id: skill.length + 1,
+      top: top,
+      left: left,
+      deg: deg,
+      bg: bg.slice(3),
+      color: color.slice(3),
+      skill: skillName,
+    };
+
+    try {
+      await sb.from('skill').insert(addSkill);
+
+      toast('업로드되었습니다', {
+        icon: '✨',
+        duration: 1000,
+      });
+
+      setSkillModal(false);
+      setSelectColor(false);
+      setSelectBg(false);
+      setDeg(0);
+      setTop(0);
+      setLeft(0);
+      setBg('');
+      setColor('선택');
+      setSkillName('');
+    } catch (err) {
+      console.error(err);
+
+      toast('잠시후 다시 시도해주세요', {
+        icon: '😱',
         duration: 1000,
       });
     }
@@ -110,42 +156,14 @@ function AddSkillModal() {
                   <span>deg</span>
                 </fieldset>
                 <fieldset style={{ display: 'flex' }}>
-                  <SelectLabel>글자색</SelectLabel>
-                  <SelectWrapper>
-                    <SelectButton
-                      type="button"
-                      className="selectButton"
-                      onClick={() => setSelect(!select)}
-                    >
-                      {color === '선택' && (
-                        <>
-                          선택
-                          <SelectArrow
-                            as={select ? TiArrowSortedUp : TiArrowSortedDown}
-                            alt="글자색 선택하기"
-                            aria-hidden
-                          />
-                        </>
-                      )}
-                      {color !== '선택' && color}
-                    </SelectButton>
-                    <SelectListWrapper $select={select}>
-                      <SelectList
-                        type="button"
-                        onClick={() => selectColor('🤍 white')}
-                        $select={select}
-                      >
-                        🤍 white
-                      </SelectList>
-                      <SelectList
-                        type="button"
-                        onClick={() => selectColor('🖤 black')}
-                        $select={select}
-                      >
-                        🖤 black
-                      </SelectList>
-                    </SelectListWrapper>
-                  </SelectWrapper>
+                  <SelectInput
+                    label="글자색"
+                    select={selectColor}
+                    onSelect={() => setSelectColor(!selectColor)}
+                    color={color}
+                    onColor={selectedColor}
+                    value={['🤍 white', '🖤 black']}
+                  />
                 </fieldset>
               </StyleWrapper>
               <StyleWrapper>
@@ -177,13 +195,14 @@ function AddSkillModal() {
                 </fieldset>
               </StyleWrapper>
               <StyleWrapper>
-                <fieldset>
-                  <Label htmlFor="bgColor">배경색</Label>
-                  <Input
-                    id="bgColor"
-                    name="bgColor"
-                    type="color"
-                    onChange={(e) => setBg(e.target.value)}
+                <fieldset style={{ display: 'flex' }}>
+                  <SelectInput
+                    label="배경색"
+                    select={selectBg}
+                    onSelect={() => setSelectBg(!selectBg)}
+                    color={bg}
+                    onColor={selectedBg}
+                    value={['💛 yellow', '🩷 pink', '🤎 brown', '🩵 blue']}
                   />
                 </fieldset>
               </StyleWrapper>
@@ -436,77 +455,6 @@ const Input = styled.input<{ $type?: string }>`
   }
 `;
 
-const SelectWrapper = styled.div`
-  position: relative;
-  width: 110px;
-`;
-
-const SelectButton = styled.button`
-  box-sizing: border-box;
-  padding: 0 1%;
-  background-color: transparent;
-  width: 100%;
-  border: 2px solid ${(props) => props.theme.themeColor.blue};
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: ${(props) => props.theme.themeColor.blue};
-  cursor: pointer;
-  @media ${({ theme }) => theme.device.mobile} {
-    font-size: 3vw;
-  }
-  @media ${({ theme }) => theme.device.tablet} {
-    font-size: 3vw;
-  }
-`;
-
-const SelectLabel = styled.p`
-  white-space: nowrap;
-  width: 60px;
-  @media ${({ theme }) => theme.device.laptop} {
-    width: 90px;
-  }
-`;
-
-const SelectArrow = styled.img`
-  transform: translateX(50%);
-  width: 20px;
-  height: 20px;
-`;
-
-const SelectListWrapper = styled.div<{ $select: boolean }>`
-  box-sizing: border-box;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  transform: translateY(100%);
-  border: 2px solid ${(props) => props.theme.themeColor.blue};
-  border-radius: 5px;
-  text-align: center;
-  width: 100%;
-  transition: height 0.5s, opacity 0.1s;
-  height: ${(props) => (props.$select ? 'auto' : '0')};
-  opacity: ${(props) => (props.$select ? '1' : '0')};
-`;
-
-const SelectList = styled.button<{ $select: boolean }>`
-  box-sizing: border-box;
-  background-color: #fff;
-  white-space: nowrap;
-  padding: 1%;
-  cursor: pointer;
-  border: none;
-  width: 100%;
-  display: ${(props) => (props.$select ? 'block' : 'none')};
-  &:hover {
-    background-color: ${(props) => props.theme.themeColor.blue};
-  }
-  @media ${({ theme }) => theme.device.mobile} {
-    font-size: 4vw;
-  }
-`;
-
 const SubmitButton = styled.button`
   position: relative;
   background-color: transparent;
@@ -571,8 +519,10 @@ const Priview = styled.span<{
       ? `translate(-50%, -50%) rotate(${props.$deg}deg)`
       : `rotate(${props.$deg}deg)`};
   background-color: ${(props) =>
-    props.$bg ? props.$bg : props.theme.themeColor.blue};
-  color: ${(props) => (props.$color === '🖤 black' ? 'black' : 'white')};
+    props.$bg
+      ? props.theme.themeColor[props.$bg.slice(3)]
+      : props.theme.themeColor.blue};
+  color: ${(props) => (props.$color.includes('black', 0) ? 'black' : 'white')};
   border-radius: 100px;
   width: ${(props) => (props.$skill ? 'auto' : '20%')};
   height: ${(props) => (props.$skill ? 'auto' : '20px')};
