@@ -16,6 +16,7 @@ export default defineConfig({
       '@': resolve(__dirname, './src'),
       assets: resolve(__dirname, './src/assets'),
       components: resolve(__dirname, './src/components'),
+      context: resolve(__dirname, './src/context'),
       layout: resolve(__dirname, './src/layout'),
       pages: resolve(__dirname, './src/pages'),
       store: resolve(__dirname, './src/store'),

@@ -1,15 +1,15 @@
-import Intro from '@/components/Intro';
-import { Helmet } from 'react-helmet-async';
+import Intro from '@/pages/Intro';
+import Main from '@/layout/Main';
 
 // axios.defaults.baseURL = 'https://localhost/api';
 
 export default function Home() {
   return (
     <>
-      <Helmet>
-        <title>Portfolio</title>
-      </Helmet>
-      <Intro />
+      <header>
+        <Intro />
+      </header>
+      <Main />
     </>
   );
 }
